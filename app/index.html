@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1f3f">
+<title>Giờ Tử Tế · EFCARE</title>
+<style>
+:root{--ink:#14213d;--mut:#5b6b86;--line:#dbe3f0;--bg:#f4f7fc;--blue:#1d5fd1;--navy:#0b1f3f;--ok:#13795b;--okbg:#d9f3ea;--red:#c0392b;--redbg:#fadbd8;--warn:#7a5410;--warnbg:#fdf0d4;--gold:#f4cf6a;--r:16px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.5;min-height:100dvh;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+.app{max-width:560px;margin:0 auto}
+header{background:linear-gradient(160deg,#0b1f3f,#123067);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 18px 14px;display:flex;align-items:center;gap:12px}
+header .lg{width:40px;height:40px;border-radius:12px;background:#fff;color:#0b1f3f;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px;flex:0 0 40px}
+header b{font-size:18px;display:block;line-height:1.2}header small{color:#b9cdf5;font-size:13px}
+.screen{display:none;padding:16px 16px 24px}.screen.on{display:block}
+h2{font-size:22px;line-height:1.25;margin-bottom:4px}
+.sub{color:var(--mut);font-size:15px;margin-bottom:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(10,30,70,.05)}
+label.t{display:block;font-size:15px;font-weight:700;margin:14px 0 6px}
+input[type=text],input[type=password],input[type=number],input[type=datetime-local],textarea{width:100%;font:inherit;font-size:17px;padding:13px 14px;border:1.5px solid #c5d1e6;border-radius:12px;background:#fff;color:var(--ink);min-height:50px}
+textarea{min-height:72px;resize:vertical}
+input:focus,textarea:focus,button:focus-visible{outline:3px solid #9cc0ff;outline-offset:1px}
+.err{color:var(--red);font-size:14px;margin-top:4px;min-height:0}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;border:0;border-radius:14px;font:inherit;font-size:17px;font-weight:700;background:var(--blue);color:#fff;cursor:pointer;padding:12px 16px}
+.btn.alt{background:#eaf0fb;color:var(--blue)}.btn.ok{background:var(--ok)}.btn.no{background:var(--redbg);color:var(--red)}
+.btn[disabled]{opacity:.55}
+.btn .sp{width:18px;height:18px;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:s .7s linear infinite;display:none}
+.btn.busy .sp{display:inline-block}
+@keyframes s{to{transform:rotate(360deg)}}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;border:2px solid var(--line);background:#fff;border-radius:14px;padding:14px;min-height:60px;font:inherit;font-size:16px;text-align:left;cursor:pointer;color:var(--ink)}
+.opt i{font-style:normal;font-size:22px;width:34px;text-align:center}
+.opt.on{border-color:var(--blue);background:#eef4ff}
+.opt small{display:block;color:var(--mut);font-size:13px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-width:62px;min-height:48px;padding:0 14px;border:2px solid var(--line);border-radius:99px;background:#fff;font:inherit;font-size:16px;font-weight:700;cursor:pointer;color:var(--ink)}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.live{margin-top:10px;background:#eef4ff;border-radius:12px;padding:10px 14px;font-size:16px}
+.live b{color:var(--blue);font-size:20px}
+.seg{display:flex;border:2px solid var(--line);border-radius:12px;overflow:hidden;min-height:48px}
+.seg button{flex:1;border:0;background:#fff;font:inherit;font-size:16px;font-weight:700;cursor:pointer;color:var(--mut)}
+.seg button.on.no{background:var(--okbg);color:var(--ok)}.seg button.on.yes{background:var(--redbg);color:var(--red)}
+.q{padding:12px 0;border-top:1px solid var(--line)}.q:first-child{border-top:0}.q p{font-size:15px;margin-bottom:8px}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:16px;margin:12px 0}
+.chk input{width:26px;height:26px;margin-top:2px;flex:0 0 26px}
+.dots{display:flex;gap:6px;margin:0 0 14px}.dots i{height:6px;flex:1;border-radius:3px;background:#dbe3f0}.dots i.on{background:var(--blue)}
+.msg{border-radius:14px;padding:14px;font-size:16px;margin-top:12px}
+.msg.ok{background:var(--okbg);color:#0b5b43}.msg.no{background:var(--redbg);color:#8a2a20}.msg.warn{background:var(--warnbg);color:var(--warn)}.msg.info{background:#eef3fb;color:var(--ink)}
+.big{font-size:34px;font-weight:800;letter-spacing:.08em;color:var(--blue);line-height:1.15;word-break:break-all}
+.codebox{background:#fff;border:2px dashed #9cc0ff;border-radius:14px;padding:14px;text-align:center;margin:10px 0}
+.codebox small{color:var(--mut);display:block;font-size:13px}
+.stars{display:flex;gap:6px;justify-content:center;margin:8px 0}
+.stars button{font-size:40px;line-height:1;background:none;border:0;cursor:pointer;color:#cfd8e8;padding:4px;min-width:52px;min-height:52px}
+.stars button.on{color:#e9a82c}
+.elder{font-size:20px}.elder .btn{min-height:64px;font-size:20px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}.kpi b{display:block;font-size:28px;line-height:1.1;color:var(--navy)}.kpi span{font-size:13px;color:var(--mut)}
+.case{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.case .h{display:flex;justify-content:space-between;gap:8px;font-size:14px;color:var(--mut)}
+.case b{font-size:16px}.case .m{font-size:14px;color:var(--mut);margin-top:2px}
+.st{font-size:12px;font-weight:800;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.st.cho{background:var(--warnbg);color:var(--warn)}.st.ok{background:var(--okbg);color:var(--ok)}.st.no{background:var(--redbg);color:var(--red)}
+.flag{display:inline-block;font-size:12px;font-weight:700;background:var(--redbg);color:var(--red);padding:2px 8px;border-radius:8px;margin-top:6px}
+.bar{height:12px;background:#dfeafc;border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--blue)}
+.note{font-size:13px;color:var(--mut);margin-top:10px}
+.sim{border:2px dashed #c8962b;background:#fffaf0}
+nav.tab{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom);z-index:9}
+nav.tab button{flex:1;border:0;background:none;padding:8px 2px 8px;font:inherit;font-size:12.5px;font-weight:700;color:var(--mut);cursor:pointer;min-height:64px;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav.tab button span{font-size:22px;line-height:1}
+nav.tab button.on{color:var(--blue)}
+.toast{position:fixed;left:16px;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));max-width:528px;margin:0 auto;background:#0b1f3f;color:#fff;border-radius:12px;padding:12px 14px;font-size:15px;z-index:20;display:none}
+.pillrow{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px}
+.pillrow button{flex:0 0 auto;min-height:42px;padding:0 14px;border:2px solid var(--line);background:#fff;border-radius:99px;font:inherit;font-size:14px;font-weight:700;color:var(--mut)}
+.pillrow button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="lg">GT</div><div><b>Giờ Tử Tế</b><small>EFCARE · ghi nhận việc tốt, có người xác nhận</small></div></header>
+
+<!-- 1 GHI NHẬN -->
+<section class="screen on" id="s-a">
+ <div id="a-form">
+  <h2>Ghi nhận một việc tử tế</h2>
+  <p class="sub">Ba bước ngắn. Giờ Tử Tế không phải tiền.</p>
+  <div class="dots" id="a-dots"><i class="on"></i><i></i><i></i></div>
+
+  <div class="card" id="a-1">
+   <label class="t" for="helper">Bạn là ai? (tên hiển thị)</label><input type="text" id="helper" autocomplete="given-name" placeholder="Ví dụ: Lan" maxlength="40"><div class="err" id="e-helper"></div>
+   <label class="t" for="recipient">Bạn giúp ai? (tên hiển thị)</label><input type="text" id="recipient" autocomplete="off" placeholder="Ví dụ: Bác Hạnh" maxlength="40"><div class="err" id="e-recipient"></div>
+   <button class="btn" type="button" id="a-n1" style="margin-top:18px">Tiếp tục</button>
+  </div>
+
+  <div class="card" id="a-2" style="display:none">
+   <label class="t" style="margin-top:0">Bạn đã làm việc gì?</label>
+   <div class="opts" id="groups"></div>
+   <label class="t">Mất bao lâu?</label>
+   <div class="chips" id="mins"></div>
+   <input type="number" inputmode="numeric" id="minutes" min="15" max="600" placeholder="Hoặc nhập số phút khác" style="margin-top:10px">
+   <div class="live" id="live"></div><div class="err" id="e-min"></div>
+   <details style="margin-top:12px"><summary style="font-weight:700;cursor:pointer;min-height:44px;display:flex;align-items:center">Đổi thời điểm hoặc thêm ghi chú</summary>
+    <label class="t" for="when">Thời điểm</label><input type="datetime-local" id="when">
+    <label class="t" for="note">Ghi chú ngắn (không ghi thông tin bệnh)</label><textarea id="note" maxlength="240"></textarea></details>
+   <div class="row" style="margin-top:18px"><button class="btn alt" type="button" id="a-b2">Quay lại</button><button class="btn" type="button" id="a-n2">Tiếp tục</button></div>
+  </div>
+
+  <div class="card" id="a-3" style="display:none">
+   <p style="font-weight:700;margin-bottom:6px">Trả lời nhanh về an toàn</p>
+   <div id="qs"></div>
+   <label class="chk"><input type="checkbox" id="consent"><span>Người được giúp <b>đồng ý</b> để EFCARE lưu thông tin của việc này.</span></label><div class="err" id="e-consent"></div>
+   <div class="row" style="margin-top:14px"><button class="btn alt" type="button" id="a-b3">Quay lại</button><button class="btn" type="button" id="a-go"><span class="sp"></span><span>Ghi nhận</span></button></div>
+  </div>
+  <div id="a-msg"></div>
+ </div>
+
+ <div id="a-done" style="display:none">
+  <div class="msg ok" id="a-done-t"></div>
+  <div class="codebox"><small>Mã ca</small><div class="big" id="d-code"></div><small style="margin-top:8px">Mã xác nhận (chỉ hiện một lần)</small><div class="big" id="d-otp"></div></div>
+  <p class="sub">Gửi lời nhắn này cho người được giúp. Họ bấm vào link là xác nhận được ngay trên điện thoại của họ.</p>
+  <button class="btn" type="button" id="d-share">Gửi cho người được giúp</button>
+  <button class="btn alt" type="button" id="d-copy" style="margin-top:10px">Sao chép lời nhắn</button>
+  <button class="btn alt" type="button" id="d-new" style="margin-top:10px">Ghi nhận việc khác</button>
+  <p class="note">Mẹo: nhờ người được giúp xác nhận bằng điện thoại của chính họ. Xác nhận trên cùng máy với người ghi sẽ bị đánh dấu để kiểm tra.</p>
+ </div>
+</section>
+
+<!-- 2 XÁC NHẬN -->
+<section class="screen" id="s-b">
+ <div id="b-find">
+  <h2>Xác nhận được giúp</h2>
+  <p class="sub">Nhập mã người giúp đã đọc cho bạn, hoặc bấm vào link họ gửi.</p>
+  <div class="card">
+   <label class="t" for="v-code" style="margin-top:0">Mã ca</label><input type="text" id="v-code" autocapitalize="characters" autocomplete="off" placeholder="GTT-261031-001">
+   <label class="t" for="v-otp">Mã xác nhận (6 số)</label><input type="text" id="v-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="123456">
+   <button class="btn" type="button" id="v-go" style="margin-top:16px"><span class="sp"></span><span>Xem việc đã làm</span></button>
+  </div>
+ </div>
+ <div id="b-detail" style="display:none" class="elder"></div>
+ <div id="b-msg"></div>
+</section>
+
+<!-- 3 TÁC ĐỘNG -->
+<section class="screen" id="s-c">
+ <div id="c-gate">
+  <h2>Bảng tác động</h2>
+  <p class="sub">Dành cho người quản trị. Nhập mã quản trị.</p>
+  <div class="card"><input type="password" id="pin" inputmode="numeric" autocomplete="off" placeholder="Mã quản trị"><button class="btn" type="button" id="pinGo" style="margin-top:12px"><span class="sp"></span><span>Mở bảng</span></button><div id="pinMsg"></div><p class="note" id="demoHint"></p></div>
+ </div>
+ <div id="board" style="display:none">
+  <h2>Bảng tác động</h2><div id="demoWarn"></div>
+  <div class="kpis" id="kpis"></div>
+  <div class="card"><b>Giờ theo nhóm việc</b><div id="bars" style="margin-top:8px"></div></div>
+  <div class="card"><b>Việc cần xem lại</b><div id="flags" style="margin-top:6px"></div></div>
+  <div class="pillrow" id="flt"><button class="on" data-f="all">Tất cả</button><button data-f="cho">Chờ xác nhận</button><button data-f="ok">Có hiệu lực</button><button data-f="no">Từ chối</button></div>
+  <div id="cases"></div>
+  <button class="btn alt" type="button" id="csv">Tải CSV</button>
+ </div>
+</section>
+
+<!-- 4 QUỸ F -->
+<section class="screen" id="s-d">
+ <h2>Quỹ F · mô phỏng</h2>
+ <p class="sub"><b>Chưa có tiền thật chạy.</b> Số dưới đây là giả định để minh họa công thức Giá_GTT = (F × s) / D.</p>
+ <div class="card sim">
+  <label class="t" style="margin-top:0" for="s-f">F · số dư quỹ giả định (đồng)</label><input type="number" inputmode="numeric" id="s-f" value="1000000000">
+  <label class="t" for="s-s">s · hệ số an toàn (0,7 đến 0,9)</label><input type="number" inputmode="decimal" step="0.05" id="s-s" value="0.8">
+  <label class="t" for="s-d">D · GTT chờ quy đổi (giả định)</label><input type="number" inputmode="numeric" id="s-d" value="20000">
+  <div class="kpis" style="margin-top:14px"><div class="kpi"><b id="s-price">–</b><span>Giá mỗi GTT (đồng)</span></div><div class="kpi"><b id="s-real">–</b><span>GTT thật có hiệu lực</span></div></div>
+  <div class="msg warn" id="s-warn" style="display:none"></div>
+ </div>
+ <div class="card"><b>Khi GTT phát hành nhiều hơn</b>
+  <table id="s-tbl" style="width:100%;border-collapse:collapse;font-size:15px;margin-top:8px"><tbody></tbody></table>
+  <p class="note">Mỗi GTT mất dần giá trị khi lượng GTT tăng. Cần trần hoặc giá sàn trước khi quy đổi thật. Nguồn Quỹ F và hình thức pháp lý của quỹ chưa chốt.</p></div>
+</section>
+</div>
+
+<div class="toast" id="toast"></div>
+<nav class="tab" id="tab">
+ <button class="on" data-p="a"><span>✎</span>Ghi nhận</button>
+ <button data-p="b"><span>✓</span>Xác nhận</button>
+ <button data-p="c"><span>▤</span>Tác động</button>
+ <button data-p="d"><span>◎</span>Quỹ F</button>
+</nav>
+
+<script>window.API_URL=''; /* DAN_URL_MAY_CHU_VAO_DAY */</script><script>// Mô phỏng Google Apps Script để thử logic Code.gs ngoài Google. KHÔNG dùng làm bản thật.
+(function(g){
+ var sheets={};
+ function Sheet(name){this.name=name;this.rows=[];}
+ Sheet.prototype.getLastRow=function(){return this.rows.length};
+ Sheet.prototype.appendRow=function(r){this.rows.push(r.slice())};
+ Sheet.prototype.getDataRange=function(){var s=this;return {getValues:function(){return s.rows.map(function(r){return r.slice()})}}};
+ Sheet.prototype.getRange=function(r,c){var s=this;return {setNumberFormat:function(){},setValue:function(v){while(s.rows[r-1].length<c)s.rows[r-1].push('');s.rows[r-1][c-1]=v}}};
+ var ss={getSheetByName:function(n){return sheets[n]||null},insertSheet:function(n){sheets[n]=new Sheet(n);return sheets[n]}};
+ g.SpreadsheetApp={getActiveSpreadsheet:function(){return ss}};
+ g.LockService={getScriptLock:function(){return {waitLock:function(){},releaseLock:function(){}}}};
+ g.HtmlService={createHtmlOutputFromFile:function(){return {setTitle:function(){return this},addMetaTag:function(){return this}}}};
+ function h(s){var a=2166136261;var out=[];for(var k=0;k<32;k++){for(var i=0;i<s.length;i++){a^=s.charCodeAt(i)+k;a=Math.imul(a,16777619)>>>0}out.push((a&255)-128)}return out}
+ g.Utilities={DigestAlgorithm:{SHA_256:'sha256'},computeDigest:function(a,s){return h(String(s))},base64Encode:function(b){return b.map(function(x){return (x+128).toString(16)}).join('')},
+  formatDate:function(d,tz,f){function t(n){return ('0'+n).slice(-2)}return String(d.getFullYear()).slice(2)+t(d.getMonth()+1)+t(d.getDate())}};
+ g.__sheets=sheets;
+})(typeof window!=='undefined'?window:globalThis);
+</script><script>/**
+ * EFCARE · Giờ Tử Tế (GTT) MVP v0.2, bản máy chủ
+ * Gắn vào một Google Sheet mới do tài khoản efcarehub sở hữu. Một trang web, 4 màn:
+ *   1 Người giúp ghi nhận · 2 Người được giúp xác nhận · 3 Bảng tác động (cần mã quản trị) · 4 Quỹ F mô phỏng
+ * Không lưu chỉ số sức khỏe. Giờ Tử Tế không phải tiền. Không quy đổi, không rút tiền mặt.
+ * Mã xác nhận chỉ lưu dạng băm; người giúp thấy mã một lần lúc tạo ca.
+ */
+var SHEET_CA = 'Ca';
+var SHEET_CFG = 'Cấu hình';
+var HEAD = ['Mã', 'Người giúp', 'Người được giúp', 'Nhóm', 'Phút', 'Thời điểm', 'Ghi chú', 'Mã xác nhận (băm)', 'Trạng thái', 'GTT', 'Đánh giá', 'Cho phép công khai', 'Tạo lúc', 'Xác nhận lúc', 'Số lần thử', 'Mẫu', 'Máy tạo', 'Máy xác nhận'];
+var COL = { MA: 0, GIUP: 1, NHAN: 2, NHOM: 3, PHUT: 4, LUC: 5, GHICHU: 6, BAM: 7, TT: 8, GTT: 9, SAO: 10, CONGKHAI: 11, TAO: 12, XN: 13, THU: 14, MAU: 15, DEV1: 16, DEV2: 17 };
+var GROUPS = ['Nhắc lịch và theo dõi (gọi điện)', 'Hỗ trợ thủ tục và công nghệ', 'Đồng hành tinh thần'];
+var MAX_THU = 5;
+
+function doGet(e) {
+  var p = (e && e.parameter) || {};
+  var t = HtmlService.createTemplateFromFile('Index');
+  t.params = JSON.stringify({ ca: clean_(p.ca, 40), ma: clean_(p.ma, 12) });
+  t.base = JSON.stringify(ScriptApp.getService().getUrl());
+  return t.evaluate()
+    .setTitle('Giờ Tử Tế · EFCARE')
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1, viewport-fit=cover');
+}
+
+/** Chạy một lần để tạo trang tính. Mã quản trị nằm ở trang "Cấu hình". */
+function setup() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ca = ss.getSheetByName(SHEET_CA) || ss.insertSheet(SHEET_CA);
+  if (ca.getLastRow() === 0) ca.appendRow(HEAD);
+  // Cột dạng chữ để Google Sheets không tự đổi mã và thời điểm thành ngày
+  [COL.MA, COL.LUC, COL.BAM, COL.TAO, COL.XN].forEach(function (c) { ca.getRange(2, c + 1, 2000, 1).setNumberFormat('@'); });
+  var cfg = ss.getSheetByName(SHEET_CFG) || ss.insertSheet(SHEET_CFG);
+  if (cfg.getLastRow() === 0) {
+    cfg.appendRow(['Khóa', 'Giá trị', 'Ghi chú']);
+    cfg.appendRow(['MaQuanTri', String(Math.floor(100000 + Math.random() * 900000)), 'Mã để mở bảng tác động. Đổi được.']);
+    cfg.appendRow(['Muoi', randomSalt_(), 'Không đổi sau khi đã có ca, vì mã xác nhận băm theo muối này.']);
+  }
+  return 'Đã tạo. Mở trang Cấu hình để xem mã quản trị.';
+}
+
+function randomSalt_() {
+  var s = '', c = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  for (var i = 0; i < 24; i++) s += c.charAt(Math.floor(Math.random() * c.length));
+  return s;
+}
+function ss_() { return SpreadsheetApp.getActiveSpreadsheet(); }
+function ensureSheets_() { var ss = ss_(); if (!ss.getSheetByName(SHEET_CA) || !ss.getSheetByName(SHEET_CFG)) setup(); }
+function cfg_(key) {
+  var v = ss_().getSheetByName(SHEET_CFG).getDataRange().getValues();
+  for (var i = 1; i < v.length; i++) if (String(v[i][0]) === key) return String(v[i][1]);
+  return '';
+}
+function hash_(code, otp) {
+  var raw = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, cfg_('Muoi') + '|' + code + '|' + otp);
+  return Utilities.base64Encode(raw);
+}
+function gtt_(m) {
+  m = Number(m) || 0;
+  if (m < 15) return 0;
+  if (m < 30) return 0.25;
+  if (m < 60) return 0.5;
+  return Math.min(4, 1 + 0.5 * Math.floor((m - 60) / 30));
+}
+function str_(v) { return v instanceof Date ? v.toISOString() : String(v == null ? '' : v); }
+function clean_(t, n) { return String(t == null ? '' : t).replace(/[\u0000-\u001f<>]/g, ' ').trim().slice(0, n || 120); }
+
+/** Ghi nhận ca mới. p: {helper, recipient, group, minutes, when, note, paid, med, sell, emg, consent} */
+function apiTaoCa(p) {
+  p = p || {};
+  var helper = clean_(p.helper, 60), recipient = clean_(p.recipient, 60);
+  var m = Number(p.minutes);
+  if (!helper || !recipient) return { ok: false, msg: 'Thiếu tên người giúp hoặc người được giúp.' };
+  if (helper.toLowerCase() === recipient.toLowerCase()) return { ok: false, msg: 'Người giúp và người được giúp không được là một người.' };
+  if (GROUPS.indexOf(p.group) < 0) return { ok: false, msg: 'Nhóm nhiệm vụ không hợp lệ.' };
+  if (p.emg) return { ok: false, emergency: true, msg: 'Có dấu hiệu cấp cứu. Gọi 115 ngay. Ca này không ghi nhận GTT.' };
+  if (p.paid) return { ok: false, msg: 'Ca đã được trả tiền công hoặc hoa hồng thì không ghi nhận GTT.' };
+  if (p.med) return { ok: false, msg: 'Kết luận bệnh, đổi thuốc, thủ thuật là việc của nhân viên y tế. Không ghi nhận GTT.' };
+  if (p.sell) return { ok: false, msg: 'Chào bán hàng hoặc tư vấn tài chính không được ghi nhận GTT.' };
+  if (!p.consent) return { ok: false, msg: 'Cần có đồng ý của người được giúp để lưu thông tin ca này.' };
+  if (!(m >= 15 && m <= 600)) return { ok: false, msg: 'Số phút phải từ 15 đến 600.' };
+  var lock = LockService.getScriptLock();
+  lock.waitLock(20000);
+  try {
+    var sh = ss_().getSheetByName(SHEET_CA);
+    var prefix = 'GTT-' + Utilities.formatDate(new Date(), 'Asia/Ho_Chi_Minh', 'yyMMdd') + '-';
+    var v = sh.getDataRange().getValues(), n = 0;
+    for (var i = 1; i < v.length; i++) if (String(v[i][COL.MA]).indexOf(prefix) === 0) n++;
+    var code = prefix + ('00' + (n + 1)).slice(-3);
+    var otp = String(Math.floor(100000 + Math.random() * 900000));
+    var g = gtt_(m);
+    var row = [];
+    row[COL.MA] = code; row[COL.GIUP] = helper; row[COL.NHAN] = recipient; row[COL.NHOM] = p.group; row[COL.PHUT] = m;
+    row[COL.LUC] = clean_(p.when, 30); row[COL.GHICHU] = clean_(p.note, 240); row[COL.BAM] = hash_(code, otp);
+    row[COL.TT] = 'cho'; row[COL.GTT] = g; row[COL.SAO] = ''; row[COL.CONGKHAI] = ''; row[COL.TAO] = new Date().toISOString();
+    row[COL.XN] = ''; row[COL.THU] = 0; row[COL.MAU] = ''; row[COL.DEV1] = clean_(p.dev, 40); row[COL.DEV2] = '';
+    sh.appendRow(row);
+    return { ok: true, code: code, otp: otp, gtt: g };
+  } finally { lock.releaseLock(); }
+}
+
+function findRow_(code) {
+  var sh = ss_().getSheetByName(SHEET_CA), v = sh.getDataRange().getValues();
+  code = String(code || '').trim().toUpperCase();
+  for (var i = 1; i < v.length; i++) if (String(v[i][COL.MA]).toUpperCase() === code) return { sh: sh, r: i + 1, row: v[i] };
+  return null;
+}
+function check_(code, otp) {
+  var f = findRow_(code);
+  if (!f) return { err: 'Không tìm thấy mã ca.' };
+  if (String(f.row[COL.MAU]) === '1') return { err: 'Đây là ca mẫu, không xác nhận được.' };
+  var thu = Number(f.row[COL.THU]) || 0;
+  if (thu >= MAX_THU) return { err: 'Mã ca này đã bị khóa do nhập sai nhiều lần. Báo cho người giúp tạo lại ca.' };
+  if (String(f.row[COL.TT]) !== 'cho') return { err: 'Ca này đã ở trạng thái: ' + (f.row[COL.TT] === 'ok' ? 'Có hiệu lực' : 'Đã từ chối') + '.' };
+  if (hash_(f.row[COL.MA], String(otp || '').trim()) !== String(f.row[COL.BAM])) {
+    f.sh.getRange(f.r, COL.THU + 1).setValue(thu + 1);
+    return { err: 'Mã xác nhận chưa đúng. Còn ' + (MAX_THU - thu - 1) + ' lần thử.' };
+  }
+  return { f: f };
+}
+
+function apiTimCa(code, otp) {
+  var c = check_(code, otp);
+  if (c.err) return { ok: false, msg: c.err };
+  var r = c.f.row;
+  return { ok: true, ca: { code: r[COL.MA], helper: r[COL.GIUP], recipient: r[COL.NHAN], group: r[COL.NHOM], minutes: r[COL.PHUT], when: str_(r[COL.LUC]), note: str_(r[COL.GHICHU]) } };
+}
+
+function apiXacNhan(code, otp, rating, pub, accept, dev) {
+  var c = check_(code, otp);
+  if (c.err) return { ok: false, msg: c.err };
+  var f = c.f;
+  if (accept) {
+    var s = Math.max(1, Math.min(5, Number(rating) || 5));
+    f.sh.getRange(f.r, COL.TT + 1).setValue('ok');
+    f.sh.getRange(f.r, COL.SAO + 1).setValue(s);
+    f.sh.getRange(f.r, COL.CONGKHAI + 1).setValue(pub ? 1 : 0);
+  } else {
+    f.sh.getRange(f.r, COL.TT + 1).setValue('no');
+  }
+  f.sh.getRange(f.r, COL.XN + 1).setValue(new Date().toISOString());
+  f.sh.getRange(f.r, COL.DEV2 + 1).setValue(clean_(dev, 40));
+  return { ok: true, accepted: !!accept, code: str_(f.row[COL.MA]), helper: str_(f.row[COL.GIUP]), gtt: Number(f.row[COL.GTT]) || 0 };
+}
+
+/** Bảng tác động. Cần mã quản trị. Không trả mã băm. */
+function apiTongHop(pin) {
+  if (String(pin || '') !== cfg_('MaQuanTri')) return { ok: false, msg: 'Mã quản trị chưa đúng.' };
+  var v = ss_().getSheetByName(SHEET_CA).getDataRange().getValues(), out = [];
+  for (var i = 1; i < v.length; i++) {
+    var r = v[i];
+    out.push({ code: str_(r[COL.MA]), helper: str_(r[COL.GIUP]), recipient: str_(r[COL.NHAN]), group: str_(r[COL.NHOM]), minutes: Number(r[COL.PHUT]) || 0, when: str_(r[COL.LUC]), status: str_(r[COL.TT]), gtt: Number(r[COL.GTT]) || 0, rating: r[COL.SAO] === '' ? null : Number(r[COL.SAO]), publicOk: String(r[COL.CONGKHAI]) === '1', created: str_(r[COL.TAO]), demo: String(r[COL.MAU]) === '1', sameDevice: !!str_(r[COL.DEV1]) && str_(r[COL.DEV1]) === str_(r[COL.DEV2]) });
+  }
+  return { ok: true, cases: out };
+}
+
+/* ---------- Cổng API cho giao diện trên GitHub Pages (efcare-space.github.io) ---------- */
+var API_FNS = { apiTaoCa: apiTaoCa, apiTimCa: apiTimCa, apiXacNhan: apiXacNhan, apiTongHop: apiTongHop };
+function doPost(e) {
+  var out;
+  try {
+    ensureSheets_();
+    var req = JSON.parse((e && e.postData && e.postData.contents) || '{}');
+    var fn = API_FNS[req.fn];
+    if (!fn) throw new Error('Yêu cầu không hợp lệ.');
+    out = { ok: true, data: fn.apply(null, req.args || []) };
+  } catch (err) {
+    out = { ok: false, error: String(err && err.message || err) };
+  }
+  return ContentService.createTextOutput(JSON.stringify(out)).setMimeType(ContentService.MimeType.JSON);
+}
+</script><script>(function(){var API=window.API_URL||'',KEY='efcare_gtt_app_v1',FN=["apiTaoCa", "apiTimCa", "apiXacNhan", "apiTongHop"];
+window.__PARAMS=(function(){var p={};location.search.replace('?','').split('&').forEach(function(x){var kv=x.split('=');if(kv[0])p[kv[0]]=decodeURIComponent(kv[1]||'')});return p})();
+window.__BASE=location.href.split('?')[0].split('#')[0];
+if(!API){var sheets=window.__sheets;window.__save=function(){try{var o={};Object.keys(sheets).forEach(function(k){o[k]=sheets[k].rows});localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}};
+ var had=false;try{var d=JSON.parse(localStorage.getItem(KEY)||'null');if(d){Object.keys(d).forEach(function(k){var sh=SpreadsheetApp.getActiveSpreadsheet().insertSheet(k);sh.rows=d[k]});had=true}}catch(e){}
+ if(!had){setup();window.__save()}window.__DEMO_PIN=cfg_('MaQuanTri');}
+function mk(){var o={_s:null,_f:null,withSuccessHandler:function(f){var n=mk();n._s=f;n._f=this._f;return n},withFailureHandler:function(f){var n=mk();n._f=f;n._s=this._s;return n}};
+ FN.forEach(function(name){o[name]=function(){var a=[].slice.call(arguments),s=o._s,f=o._f;
+  if(API){fetch(API,{method:'POST',credentials:'omit',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({fn:name,args:a})}).then(function(r){return r.json()}).then(function(j){if(j.ok){if(s)s(j.data)}else if(f)f(new Error(j.error))}).catch(function(e){if(f)f(e)})}
+  else setTimeout(function(){try{var r=window[name].apply(null,a);window.__save();if(s)s(JSON.parse(JSON.stringify(r)))}catch(e){if(f)f(e)}},100)}});return o}
+window.google={script:{run:mk()}};
+document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('div');b.style.cssText='background:'+(API?'#13795b':'#7a5410')+';color:#fff;font:13px/1.4 system-ui,sans-serif;padding:7px 14px;text-align:center';b.textContent=API?'Đã kết nối máy chủ EFCARE · dữ liệu thật':'Chế độ thử · dữ liệu chỉ lưu trên máy này, chưa kết nối máy chủ';document.body.insertBefore(b,document.body.firstChild)});
+})();</script>
+<script>
+(function(){
+ var $=function(i){return document.getElementById(i)};
+ var PARAMS=window.__PARAMS||{},BASE=window.__BASE||'';
+ function call(fn){var a=[].slice.call(arguments,1);return new Promise(function(res,rej){google.script.run.withSuccessHandler(res).withFailureHandler(function(e){rej(e)})[fn].apply(null,a)})}
+ function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+ function fmt(n){return (Math.round(n*100)/100).toString().replace('.',',')}
+ function vnd(n){return Math.round(n).toLocaleString('vi-VN')}
+ function two(n){return n<10?'0'+n:''+n}
+ function nowLocal(){var d=new Date();return d.getFullYear()+'-'+two(d.getMonth()+1)+'-'+two(d.getDate())+'T'+two(d.getHours())+':'+two(d.getMinutes())}
+ function dt(s){try{var d=new Date(s);if(isNaN(d))return s;return two(d.getDate())+'/'+two(d.getMonth()+1)+' '+two(d.getHours())+':'+two(d.getMinutes())}catch(e){return s}}
+ function gtt(m){m=Number(m)||0;if(m<15)return 0;if(m<30)return .25;if(m<60)return .5;return Math.min(4,1+.5*Math.floor((m-60)/30))}
+ var LS={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+ var DEV=LS.get('gtt_dev');if(!DEV){DEV='d'+Math.random().toString(36).slice(2,12);LS.set('gtt_dev',DEV)}
+ function toast(t){var e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},2600)}
+ function busy(b,on){b.disabled=on;b.classList.toggle('busy',on)}
+ function netErr(box,retry){box.innerHTML='<div class="msg no">Không kết nối được. Kiểm tra mạng rồi thử lại. Thông tin bạn đã nhập vẫn còn nguyên.</div>'}
+
+ /* nav */
+ var tabs=document.querySelectorAll('#tab button');
+ function show(p){[].forEach.call(tabs,function(b){b.classList.toggle('on',b.dataset.p===p)});['a','b','c','d'].forEach(function(k){$('s-'+k).classList.toggle('on',k===p)});if(p==='d')renderD();window.scrollTo(0,0)}
+ [].forEach.call(tabs,function(b){b.onclick=function(){show(b.dataset.p)}});
+
+ /* A */
+ var GROUPS=[['Nhắc lịch và theo dõi (gọi điện)','☎','Gọi nhắc uống thuốc, nhắc lịch tái khám'],['Hỗ trợ thủ tục và công nghệ','▣','Giúp làm thủ tục, dùng điện thoại, ứng dụng'],['Đồng hành tinh thần','♡','Trò chuyện, lắng nghe, hỏi thăm']];
+ var QS=[['paid','Việc này đã được trả tiền công hoặc hoa hồng chăm sóc?'],['med','Có kết luận bệnh, đổi thuốc hoặc làm thủ thuật y khoa?'],['sell','Có chào bán hàng hoặc tư vấn tài chính?'],['emg','Có dấu hiệu cấp cứu (đau ngực, khó thở, yếu liệt đột ngột)?']];
+ var st={group:GROUPS[0][0],minutes:30,q:{paid:0,med:0,sell:0,emg:0},step:1};
+ $('groups').innerHTML=GROUPS.map(function(g,i){return '<button type="button" class="opt'+(i===0?' on':'')+'" data-i="'+i+'"><i>'+g[1]+'</i><span>'+esc(g[0])+'<small>'+esc(g[2])+'</small></span></button>'}).join('');
+ [].forEach.call($('groups').children,function(b){b.onclick=function(){st.group=GROUPS[b.dataset.i][0];[].forEach.call($('groups').children,function(x){x.classList.toggle('on',x===b)})}});
+ var MINS=[15,30,45,60,90,120];
+ $('mins').innerHTML=MINS.map(function(m){return '<button type="button" class="chip'+(m===30?' on':'')+'" data-m="'+m+'">'+m+' phút</button>'}).join('');
+ function live(){var g=gtt(st.minutes);$('live').innerHTML=st.minutes>=15?'Được ghi nhận: <b>'+fmt(g)+' GTT</b>':'<span style="color:#c0392b">Cần ít nhất 15 phút</span>'}
+ [].forEach.call($('mins').children,function(b){b.onclick=function(){st.minutes=Number(b.dataset.m);$('minutes').value='';[].forEach.call($('mins').children,function(x){x.classList.toggle('on',x===b)});live()}});
+ $('minutes').oninput=function(){var v=Number(this.value);[].forEach.call($('mins').children,function(x){x.classList.remove('on')});st.minutes=v;live()};
+ $('qs').innerHTML=QS.map(function(q){return '<div class="q"><p>'+esc(q[1])+'</p><div class="seg" data-k="'+q[0]+'"><button type="button" class="on no" data-v="0">Không</button><button type="button" data-v="1">Có</button></div></div>'}).join('');
+ [].forEach.call($('qs').querySelectorAll('.seg'),function(sg){[].forEach.call(sg.children,function(b){b.onclick=function(){var v=Number(b.dataset.v);st.q[sg.dataset.k]=v;[].forEach.call(sg.children,function(x){x.className='';});b.className='on '+(v?'yes':'no')}})});
+ $('when').value=nowLocal();live();
+ var savedHelper=LS.get('gtt_helper');if(savedHelper)$('helper').value=savedHelper;
+ function step(n){st.step=n;['a-1','a-2','a-3'].forEach(function(id,i){$(id).style.display=(i+1===n)?'block':'none'});[].forEach.call($('a-dots').children,function(d,i){d.classList.toggle('on',i<n)});window.scrollTo(0,0)}
+ $('a-n1').onclick=function(){var ok=true;$('e-helper').textContent='';$('e-recipient').textContent='';
+  if(!$('helper').value.trim()){$('e-helper').textContent='Nhập tên của bạn.';ok=false}
+  if(!$('recipient').value.trim()){$('e-recipient').textContent='Nhập tên người bạn giúp.';ok=false}
+  else if($('helper').value.trim().toLowerCase()===$('recipient').value.trim().toLowerCase()){$('e-recipient').textContent='Người giúp và người được giúp không được là một người.';ok=false}
+  if(ok){LS.set('gtt_helper',$('helper').value.trim());step(2)}};
+ $('a-b2').onclick=function(){step(1)};
+ $('a-n2').onclick=function(){if(!(st.minutes>=15&&st.minutes<=600)){$('e-min').textContent='Số phút từ 15 đến 600.';return}$('e-min').textContent='';step(3)};
+ $('a-b3').onclick=function(){step(2)};
+ var lastMsg='';
+ $('a-go').onclick=function(){
+  var b=$('a-go'),box=$('a-msg');box.innerHTML='';$('e-consent').textContent='';
+  if(!$('consent').checked){$('e-consent').textContent='Cần có đồng ý của người được giúp.';return}
+  var p={helper:$('helper').value,recipient:$('recipient').value,group:st.group,minutes:st.minutes,when:$('when').value,note:$('note').value,paid:!!st.q.paid,med:!!st.q.med,sell:!!st.q.sell,emg:!!st.q.emg,consent:true,dev:DEV};
+  busy(b,true);
+  call('apiTaoCa',p).then(function(r){busy(b,false);
+   if(!r||!r.ok){box.innerHTML='<div class="msg no">'+(r&&r.emergency?'<b>Có dấu hiệu cấp cứu.</b> Gọi <b>115</b> ngay. Việc này không ghi nhận GTT.':esc(r&&r.msg||'Không ghi nhận được.'))+'</div>';return}
+   $('a-form').style.display='none';$('a-done').style.display='block';
+   $('a-done-t').innerHTML='<b>Đã ghi nhận.</b> '+fmt(r.gtt)+' GTT đang chờ người được giúp xác nhận.';
+   $('d-code').textContent=r.code;$('d-otp').textContent=r.otp;
+   var link=BASE?(BASE+(BASE.indexOf('?')>-1?'&':'?')+'ca='+encodeURIComponent(r.code)+'&ma='+encodeURIComponent(r.otp)):'';
+   lastMsg='Chào '+p.recipient+', '+p.helper+' vừa ghi nhận một việc tử tế dành cho bạn ('+p.group.toLowerCase()+', '+p.minutes+' phút). Nếu đúng, bạn bấm xác nhận giúp nhé: '+(link||('mã ca '+r.code+', mã xác nhận '+r.otp))+(link?'':'')+'\nMã ca: '+r.code+' · Mã xác nhận: '+r.otp;
+   window.scrollTo(0,0);
+  }).catch(function(){busy(b,false);netErr(box)});
+ };
+ $('d-share').onclick=function(){if(navigator.share){navigator.share({text:lastMsg}).catch(function(){})}else{copy(lastMsg)}};
+ $('d-copy').onclick=function(){copy(lastMsg)};
+ function copy(t){function ok(){toast('Đã sao chép lời nhắn. Dán vào Zalo hoặc tin nhắn.')}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fallback()})}else fallback();
+  function fallback(){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){toast('Không sao chép được. Hãy chụp màn hình mã.')}document.body.removeChild(ta)}}
+ $('d-new').onclick=function(){$('a-done').style.display='none';$('a-form').style.display='block';$('recipient').value='';$('note').value='';$('consent').checked=false;st.q={paid:0,med:0,sell:0,emg:0};[].forEach.call($('qs').querySelectorAll('.seg'),function(sg){sg.children[0].className='on no';sg.children[1].className=''});$('when').value=nowLocal();step(1)};
+
+ /* B */
+ var cur=null;
+ function find(){
+  var b=$('v-go'),box=$('b-msg');box.innerHTML='';var code=$('v-code').value.trim(),o=$('v-otp').value.trim();
+  if(!code||!o){box.innerHTML='<div class="msg warn">Nhập đủ mã ca và mã xác nhận.</div>';return}
+  busy(b,true);
+  call('apiTimCa',code,o).then(function(r){busy(b,false);
+   if(!r||!r.ok){box.innerHTML='<div class="msg no">'+esc(r&&r.msg||'Không tìm thấy.')+'</div>';return}
+   var c=r.ca;cur={code:code,otp:o,rate:5,pub:false};
+   $('b-find').style.display='none';$('b-detail').style.display='block';
+   $('b-detail').innerHTML='<div class="card"><p>Có người báo đã giúp bạn:</p><p style="margin:8px 0"><b>'+esc(c.helper)+'</b> đã giúp <b>'+esc(c.recipient)+'</b></p><p>'+esc(c.group)+'</p><p><b>'+esc(c.minutes)+' phút</b>, lúc '+esc(dt(c.when))+'</p>'+(c.note?'<p class="note" style="font-size:16px">Ghi chú: '+esc(c.note)+'</p>':'')+'</div>'+
+    '<div class="card"><b>Bạn thấy sự giúp đỡ này thế nào?</b><div class="stars" id="stars">'+[1,2,3,4,5].map(function(i){return '<button type="button" data-s="'+i+'" class="on" aria-label="'+i+' sao">★</button>'}).join('')+'</div>'+
+    '<label class="chk" style="font-size:17px"><input type="checkbox" id="v-pub"><span>Tôi đồng ý chia sẻ câu chuyện này (ẩn danh) để kêu gọi quỹ. Không tick là không công khai.</span></label></div>'+
+    '<button class="btn ok" type="button" id="v-ok"><span class="sp"></span><span>Đúng, tôi đã được giúp</span></button><button class="btn no" type="button" id="v-no" style="margin-top:12px"><span class="sp"></span><span>Không đúng</span></button>';
+   [].forEach.call($('stars').children,function(s){s.onclick=function(){cur.rate=Number(s.dataset.s);[].forEach.call($('stars').children,function(x){x.classList.toggle('on',Number(x.dataset.s)<=cur.rate)})}});
+   function done(acc){var btn=acc?$('v-ok'):$('v-no');busy(btn,true);
+    call('apiXacNhan',cur.code,cur.otp,cur.rate,$('v-pub').checked,acc,DEV).then(function(x){
+     if(!x||!x.ok){busy(btn,false);toast(x&&x.msg||'Không xác nhận được.');return}
+     $('b-detail').innerHTML=x.accepted?'<div class="msg ok"><b>Cảm ơn bạn.</b> Việc của '+esc(x.helper)+' đã được ghi nhận: '+fmt(x.gtt)+' GTT.</div>':'<div class="msg warn">Đã ghi nhận là không đúng. Việc này không tính GTT.</div>';cur=null
+    }).catch(function(){busy(btn,false);toast('Không kết nối được. Thử lại.')})}
+   $('v-ok').onclick=function(){done(true)};$('v-no').onclick=function(){done(false)};
+  }).catch(function(){busy(b,false);netErr(box)});
+ }
+ $('v-go').onclick=find;
+ if(PARAMS.ca){$('v-code').value=PARAMS.ca;$('v-otp').value=PARAMS.ma||'';show('b');if(PARAMS.ma)find()}
+
+ /* C */
+ var ROWS=[],PIN='',FILTER='all';
+ function loadBoard(){var b=$('pinGo'),m=$('pinMsg');m.innerHTML='';var pin=$('pin').value.trim();busy(b,true);
+  call('apiTongHop',pin).then(function(r){busy(b,false);
+   if(!r||!r.ok){m.innerHTML='<div class="msg no">'+esc(r&&r.msg||'Không mở được.')+'</div>';return}
+   PIN=pin;ROWS=r.cases;$('c-gate').style.display='none';$('board').style.display='block';renderC()
+  }).catch(function(){busy(b,false);netErr(m)})}
+ $('pinGo').onclick=loadBoard;$('pin').onkeydown=function(e){if(e.key==='Enter')loadBoard()};
+ if(window.__DEMO_PIN)$('demoHint').textContent='Bản demo: mã quản trị là '+window.__DEMO_PIN+'.';
+ function renderC(){
+  var all=ROWS,ok=all.filter(function(c){return c.status==='ok'}),cho=all.filter(function(c){return c.status==='cho'}),done=all.filter(function(c){return c.status!=='cho'});
+  var hrs=ok.reduce(function(a,c){return a+c.gtt},0),hp={},rp={};ok.forEach(function(c){hp[c.helper.toLowerCase()]=1;rp[c.recipient.toLowerCase()]=1});
+  var conf=done.length?Math.round(ok.length/done.length*100):0,rated=ok.filter(function(c){return c.rating}),avg=rated.length?rated.reduce(function(a,c){return a+c.rating},0)/rated.length:0;
+  var nd=all.filter(function(c){return c.demo}).length;$('demoWarn').innerHTML=nd?'<div class="msg no" style="margin:0 0 12px"><b>Có '+nd+' ca MẪU</b> trong số liệu. Không dùng làm bằng chứng.</div>':'';
+  var K=[[fmt(hrs),'GTT có hiệu lực'],[ok.length+'/'+all.length,'Ca hiệu lực / tổng'],[Object.keys(hp).length,'Người giúp'],[Object.keys(rp).length,'Người được giúp'],[conf+'%','Tỷ lệ xác nhận'],[cho.length,'Đang chờ'],[rated.length?fmt(avg):'–','Đánh giá TB (1–5)'],[ok.filter(function(c){return c.publicOk}).length,'Cho phép công khai']];
+  $('kpis').innerHTML=K.map(function(k){return '<div class="kpi"><b>'+k[0]+'</b><span>'+k[1]+'</span></div>'}).join('');
+  var g={};ok.forEach(function(c){g[c.group]=(g[c.group]||0)+c.gtt});var mx=Math.max.apply(null,Object.keys(g).map(function(k){return g[k]}).concat([1]));
+  $('bars').innerHTML=Object.keys(g).length?Object.keys(g).map(function(k){return '<div style="margin:10px 0"><div style="display:flex;justify-content:space-between;font-size:14px"><span>'+esc(k)+'</span><b>'+fmt(g[k])+'</b></div><div class="bar"><i style="width:'+Math.round(g[k]/mx*100)+'%"></i></div></div>'}).join(''):'<p class="note">Chưa có ca nào có hiệu lực.</p>';
+  var fl=[],per={};all.forEach(function(c){var k=c.helper.toLowerCase()+'|'+String(c.when).slice(0,10);per[k]=(per[k]||0)+1;if(c.gtt>=4)fl.push('Ca '+c.code+' đạt trần 4,0 GTT.');if(c.sameDevice&&c.status==='ok')fl.push('Ca '+c.code+' được xác nhận trên cùng máy với người ghi: gọi lại người được giúp.')});
+  Object.keys(per).forEach(function(k){if(per[k]>3)fl.push('Người giúp "'+k.split('|')[0]+'" có '+per[k]+' ca trong ngày '+k.split('|')[1]+'.')});
+  cho.forEach(function(c){if(Date.now()-new Date(c.created).getTime()>3*86400000)fl.push('Ca '+c.code+' chờ quá 3 ngày.')});
+  $('flags').innerHTML=fl.length?fl.map(function(t){return '<p style="font-size:15px;margin:6px 0">• '+esc(t)+'</p>'}).join(''):'<p class="note">Chưa có dấu hiệu bất thường.</p>';
+  var list=all.filter(function(c){return FILTER==='all'||c.status===FILTER}).slice().reverse();
+  $('cases').innerHTML=list.length?list.map(function(c){return '<div class="case"><div class="h"><span>'+esc(c.code)+(c.demo?' · MẪU':'')+'</span><span class="st '+c.status+'">'+(c.status==='ok'?'Có hiệu lực':c.status==='no'?'Từ chối':'Chờ')+'</span></div><b>'+esc(c.helper)+' → '+esc(c.recipient)+'</b><div class="m">'+esc(c.group)+' · '+c.minutes+' phút · '+fmt(c.gtt)+' GTT'+(c.rating?' · '+c.rating+'★':'')+'</div>'+(c.sameDevice?'<span class="flag">Xác nhận cùng máy</span>':'')+'</div>'}).join(''):'<p class="note">Không có ca nào.</p>';
+ }
+ [].forEach.call($('flt').children,function(b){b.onclick=function(){FILTER=b.dataset.f;[].forEach.call($('flt').children,function(x){x.classList.toggle('on',x===b)});renderC()}});
+ $('csv').onclick=function(){var h=['ma','nguoi_giup','nguoi_duoc_giup','nhom','phut','gtt','trang_thai','danh_gia','cho_phep_cong_khai','xac_nhan_cung_may','mau'];
+  var rows=ROWS.map(function(c){return [c.code,c.helper,c.recipient,c.group,c.minutes,c.gtt,c.status,c.rating||'',c.publicOk?1:0,c.sameDevice?1:0,c.demo?1:0].map(function(v){return '"'+String(v).replace(/"/g,'""')+'"'}).join(',')});
+  var blob=new Blob(['﻿'+h.join(',')+'\n'+rows.join('\n')],{type:'text/csv;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='gtt-so-ghi-nhan.csv';a.click()};
+
+ /* D */
+ function renderD(){var F=Number($('s-f').value)||0,s=Number($('s-s').value)||0,D=Number($('s-d').value)||0,w=$('s-warn');
+  var real=ROWS.filter(function(c){return c.status==='ok'&&!c.demo}).reduce(function(a,c){return a+c.gtt},0);
+  if(s<0.7||s>0.9){w.style.display='block';w.textContent='Hệ số s nằm ngoài khoảng 0,7 đến 0,9 của SOP.'}else w.style.display='none';
+  $('s-price').textContent=D>0?vnd(F*s/D):'–';$('s-real').textContent=PIN?fmt(real):'mở bảng ở mục Tác động';
+  $('s-tbl').querySelector('tbody').innerHTML=[1000,5000,20000,50000,100000].map(function(d){return '<tr><td style="padding:8px 0;border-top:1px solid #dbe3f0">D = '+vnd(d)+'</td><td style="padding:8px 0;border-top:1px solid #dbe3f0;text-align:right"><b>'+vnd(F*s/d)+'</b> đ/GTT</td></tr>'}).join('')}
+ ['s-f','s-s','s-d'].forEach(function(i){$(i).oninput=renderD});
+})();
+</script>
+</body>
+</html>
