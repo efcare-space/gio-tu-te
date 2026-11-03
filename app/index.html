@@ -1,11 +1,5 @@
 <!doctype html>
-<html lang="vi">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b1f3f">
-<title>Giờ Tử Tế · EFCARE</title>
-<style>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0b1f3f"><title>Giờ Tử Tế · EFCARE</title><style>
 :root{--ink:#14213d;--mut:#5b6b86;--line:#dbe3f0;--bg:#f4f7fc;--blue:#1d5fd1;--navy:#0b1f3f;--ok:#13795b;--okbg:#d9f3ea;--red:#c0392b;--redbg:#fadbd8;--warn:#7a5410;--warnbg:#fdf0d4;--gold:#f4cf6a;--r:16px}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
@@ -76,115 +70,84 @@ nav.tab button.on{color:var(--blue)}
 .pillrow button{flex:0 0 auto;min-height:42px;padding:0 14px;border:2px solid var(--line);background:#fff;border-radius:99px;font:inherit;font-size:14px;font-weight:700;color:var(--mut)}
 .pillrow button.on{background:var(--navy);border-color:var(--navy);color:#fff}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
-</head>
-<body>
+.partners{margin-top:18px}.partners h4{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.lgs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.lgs div{background:#fff;border:1px dashed #c5d1e6;border-radius:12px;height:58px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#8a96ad;text-align:center;padding:4px;overflow:hidden}
+.lgs img{max-width:100%;max-height:46px}
+.opt.off{opacity:.5}.opt .cap{margin-left:auto;font-size:11px;font-weight:800;background:#eef3fb;color:#1d5fd1;border-radius:8px;padding:2px 7px;white-space:nowrap}
+.bal{background:linear-gradient(150deg,#0b1f3f,#1d5fd1);color:#fff;border-radius:18px;padding:18px;margin-bottom:14px}
+.bal b{font-size:40px;display:block;line-height:1.1}.bal span{color:#cfe0ff;font-size:14px}
+.li{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:9px 0;font-size:14.5px}.li:first-child{border-top:0}
+.pos{color:#13795b;font-weight:800}.neg{color:#c0392b;font-weight:800}
+.lv{display:inline-block;font-size:11px;font-weight:800;border-radius:8px;padding:2px 8px;margin-top:6px}
+.lv1{background:#fdf0d4;color:#7a5410}.lv2{background:#e6edf8;color:#2c4a7a}.lv3{background:#d9f3ea;color:#13795b}.lv4{background:#13795b;color:#fff}
+select{width:100%;font:inherit;font-size:17px;padding:12px 14px;border:1.5px solid #c5d1e6;border-radius:12px;background:#fff;min-height:50px}
+</style></head><body>
 <div class="app">
 <header><div class="lg">GT</div><div><b>Giờ Tử Tế</b><small>EFCARE · ghi nhận việc tốt, có người xác nhận</small></div></header>
 
-<!-- 1 GHI NHẬN -->
 <section class="screen on" id="s-a">
  <div id="a-form">
   <h2>Ghi nhận một việc tử tế</h2>
-  <p class="sub">Ba bước ngắn. Giờ Tử Tế không phải tiền.</p>
+  <p class="sub" id="a-who"></p>
   <div class="dots" id="a-dots"><i class="on"></i><i></i><i></i></div>
-
   <div class="card" id="a-1">
-   <label class="t" for="helper">Bạn là ai? (tên hiển thị)</label><input type="text" id="helper" autocomplete="given-name" placeholder="Ví dụ: Lan" maxlength="40"><div class="err" id="e-helper"></div>
-   <label class="t" for="recipient">Bạn giúp ai? (tên hiển thị)</label><input type="text" id="recipient" autocomplete="off" placeholder="Ví dụ: Bác Hạnh" maxlength="40"><div class="err" id="e-recipient"></div>
+   <div id="a-helperBox"><label class="t" for="helper" style="margin-top:0">Bạn là ai? (tên hiển thị)</label><input type="text" id="helper" maxlength="40" placeholder="Ví dụ: Lan"><div class="err" id="e-helper"></div></div>
+   <label class="t" for="recipient">Bạn giúp ai? (tên hiển thị)</label><input type="text" id="recipient" maxlength="40" placeholder="Ví dụ: Bác Hạnh"><div class="err" id="e-recipient"></div>
    <button class="btn" type="button" id="a-n1" style="margin-top:18px">Tiếp tục</button>
   </div>
-
   <div class="card" id="a-2" style="display:none">
    <label class="t" style="margin-top:0">Bạn đã làm việc gì?</label>
-   <div class="opts" id="groups"></div>
-   <label class="t">Mất bao lâu?</label>
-   <div class="chips" id="mins"></div>
+   <div class="opts" id="viecs"></div><div class="err" id="e-viec"></div>
+   <label class="t">Mất bao lâu?</label><div class="chips" id="mins"></div>
    <input type="number" inputmode="numeric" id="minutes" min="15" max="600" placeholder="Hoặc nhập số phút khác" style="margin-top:10px">
    <div class="live" id="live"></div><div class="err" id="e-min"></div>
+   <label class="t">Minh chứng (không bắt buộc, giúp xác minh nhanh)</label>
+   <div class="row"><label class="btn alt" style="margin:0;cursor:pointer">📷 Ảnh minh chứng<input type="file" id="photo" accept="image/*" capture="environment" style="display:none"></label><button class="btn alt" type="button" id="geoA" style="margin:0">📍 Gắn vị trí</button></div>
+   <div class="note" id="proofA">Không chụp mặt người được giúp nếu họ chưa đồng ý.</div>
    <details style="margin-top:12px"><summary style="font-weight:700;cursor:pointer;min-height:44px;display:flex;align-items:center">Đổi thời điểm hoặc thêm ghi chú</summary>
     <label class="t" for="when">Thời điểm</label><input type="datetime-local" id="when">
     <label class="t" for="note">Ghi chú ngắn (không ghi thông tin bệnh)</label><textarea id="note" maxlength="240"></textarea></details>
    <div class="row" style="margin-top:18px"><button class="btn alt" type="button" id="a-b2">Quay lại</button><button class="btn" type="button" id="a-n2">Tiếp tục</button></div>
   </div>
-
   <div class="card" id="a-3" style="display:none">
-   <p style="font-weight:700;margin-bottom:6px">Trả lời nhanh về an toàn</p>
-   <div id="qs"></div>
+   <p style="font-weight:700;margin-bottom:6px">Trả lời nhanh về an toàn</p><div id="qs"></div>
    <label class="chk"><input type="checkbox" id="consent"><span>Người được giúp <b>đồng ý</b> để EFCARE lưu thông tin của việc này.</span></label><div class="err" id="e-consent"></div>
    <div class="row" style="margin-top:14px"><button class="btn alt" type="button" id="a-b3">Quay lại</button><button class="btn" type="button" id="a-go"><span class="sp"></span><span>Ghi nhận</span></button></div>
   </div>
   <div id="a-msg"></div>
  </div>
-
  <div id="a-done" style="display:none">
   <div class="msg ok" id="a-done-t"></div>
   <div class="codebox"><small>Mã ca</small><div class="big" id="d-code"></div><small style="margin-top:8px">Mã xác nhận (chỉ hiện một lần)</small><div class="big" id="d-otp"></div></div>
-  <p class="sub">Gửi lời nhắn này cho người được giúp. Họ bấm vào link là xác nhận được ngay trên điện thoại của họ.</p>
+  <p class="sub">Gửi lời nhắn này cho người được giúp. Họ bấm link là xác nhận được trên điện thoại của họ.</p>
   <button class="btn" type="button" id="d-share">Gửi cho người được giúp</button>
   <button class="btn alt" type="button" id="d-copy" style="margin-top:10px">Sao chép lời nhắn</button>
   <button class="btn alt" type="button" id="d-new" style="margin-top:10px">Ghi nhận việc khác</button>
-  <p class="note">Mẹo: nhờ người được giúp xác nhận bằng điện thoại của chính họ. Xác nhận trên cùng máy với người ghi sẽ bị đánh dấu để kiểm tra.</p>
  </div>
+ <div class="partners" id="pt-a"></div>
 </section>
 
-<!-- 2 XÁC NHẬN -->
 <section class="screen" id="s-b">
- <div id="b-find">
-  <h2>Xác nhận được giúp</h2>
-  <p class="sub">Nhập mã người giúp đã đọc cho bạn, hoặc bấm vào link họ gửi.</p>
-  <div class="card">
-   <label class="t" for="v-code" style="margin-top:0">Mã ca</label><input type="text" id="v-code" autocapitalize="characters" autocomplete="off" placeholder="GTT-261031-001">
-   <label class="t" for="v-otp">Mã xác nhận (6 số)</label><input type="text" id="v-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="123456">
-   <button class="btn" type="button" id="v-go" style="margin-top:16px"><span class="sp"></span><span>Xem việc đã làm</span></button>
-  </div>
- </div>
- <div id="b-detail" style="display:none" class="elder"></div>
- <div id="b-msg"></div>
+ <div id="b-find"><h2>Xác nhận được giúp</h2><p class="sub">Nhập mã người giúp gửi cho bạn, hoặc bấm vào link họ gửi.</p>
+  <div class="card"><label class="t" for="v-code" style="margin-top:0">Mã ca</label><input type="text" id="v-code" autocapitalize="characters" placeholder="GTT-261103-001">
+  <label class="t" for="v-otp">Mã xác nhận (6 số)</label><input type="text" id="v-otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+  <button class="btn" type="button" id="v-go"><span class="sp"></span><span>Xem việc đã làm</span></button></div></div>
+ <div id="b-detail" style="display:none" class="elder"></div><div id="b-msg"></div>
 </section>
 
-<!-- 3 TÁC ĐỘNG -->
+<section class="screen" id="s-w"><div id="w-box"></div></section>
+
+<section class="screen" id="s-l"><h2>Danh mục việc làm</h2><p class="sub">Những việc được ghi nhận Giờ Tử Tế. Việc có trả công không ghi giờ.</p><div id="l-box"></div><div class="partners" id="pt-l"></div></section>
+
 <section class="screen" id="s-c">
- <div id="c-gate">
-  <h2>Bảng tác động</h2>
-  <p class="sub">Dành cho người quản trị. Nhập mã quản trị.</p>
-  <div class="card"><input type="password" id="pin" inputmode="numeric" autocomplete="off" placeholder="Mã quản trị"><button class="btn" type="button" id="pinGo" style="margin-top:12px"><span class="sp"></span><span>Mở bảng</span></button><div id="pinMsg"></div><p class="note" id="demoHint"></p></div>
- </div>
- <div id="board" style="display:none">
-  <h2>Bảng tác động</h2><div id="demoWarn"></div>
-  <div class="kpis" id="kpis"></div>
-  <div class="card"><b>Giờ theo nhóm việc</b><div id="bars" style="margin-top:8px"></div></div>
-  <div class="card"><b>Việc cần xem lại</b><div id="flags" style="margin-top:6px"></div></div>
-  <div class="pillrow" id="flt"><button class="on" data-f="all">Tất cả</button><button data-f="cho">Chờ xác nhận</button><button data-f="ok">Có hiệu lực</button><button data-f="no">Từ chối</button></div>
-  <div id="cases"></div>
-  <button class="btn alt" type="button" id="csv">Tải CSV</button>
- </div>
-</section>
-
-<!-- 4 QUỸ F -->
-<section class="screen" id="s-d">
- <h2>Quỹ F · mô phỏng</h2>
- <p class="sub"><b>Chưa có tiền thật chạy.</b> Số dưới đây là giả định để minh họa công thức Giá_GTT = (F × s) / D.</p>
- <div class="card sim">
-  <label class="t" style="margin-top:0" for="s-f">F · số dư quỹ giả định (đồng)</label><input type="number" inputmode="numeric" id="s-f" value="1000000000">
-  <label class="t" for="s-s">s · hệ số an toàn (0,7 đến 0,9)</label><input type="number" inputmode="decimal" step="0.05" id="s-s" value="0.8">
-  <label class="t" for="s-d">D · GTT chờ quy đổi (giả định)</label><input type="number" inputmode="numeric" id="s-d" value="20000">
-  <div class="kpis" style="margin-top:14px"><div class="kpi"><b id="s-price">–</b><span>Giá mỗi GTT (đồng)</span></div><div class="kpi"><b id="s-real">–</b><span>GTT thật có hiệu lực</span></div></div>
-  <div class="msg warn" id="s-warn" style="display:none"></div>
- </div>
- <div class="card"><b>Khi GTT phát hành nhiều hơn</b>
-  <table id="s-tbl" style="width:100%;border-collapse:collapse;font-size:15px;margin-top:8px"><tbody></tbody></table>
-  <p class="note">Mỗi GTT mất dần giá trị khi lượng GTT tăng. Cần trần hoặc giá sàn trước khi quy đổi thật. Nguồn Quỹ F và hình thức pháp lý của quỹ chưa chốt.</p></div>
+ <div id="c-gate"><h2>Quản trị</h2><p class="sub">Bảng tác động và công cụ quản trị. Nhập mã quản trị.</p>
+  <div class="card"><input type="password" id="pin" inputmode="numeric" placeholder="Mã quản trị"><button class="btn" type="button" id="pinGo"><span class="sp"></span><span>Mở</span></button><div id="pinMsg"></div><p class="note" id="demoHint"></p></div></div>
+ <div id="board" style="display:none"></div>
 </section>
 </div>
-
 <div class="toast" id="toast"></div>
-<nav class="tab" id="tab">
- <button class="on" data-p="a"><span>✎</span>Ghi nhận</button>
- <button data-p="b"><span>✓</span>Xác nhận</button>
- <button data-p="c"><span>▤</span>Tác động</button>
- <button data-p="d"><span>◎</span>Quỹ F</button>
-</nav>
+<nav class="tab" id="tab"><button class="on" data-p="a"><span>✎</span>Ghi nhận</button><button data-p="b"><span>✓</span>Xác nhận</button><button data-p="w"><span>◉</span>Ví giờ</button><button data-p="l"><span>☰</span>Danh mục</button><button data-p="c"><span>▤</span>Quản trị</button></nav>
 
 <script>window.API_URL=''; /* DAN_URL_MAY_CHU_VAO_DAY */</script><script>// Mô phỏng Google Apps Script để thử logic Code.gs ngoài Google. KHÔNG dùng làm bản thật.
 (function(g){
@@ -204,322 +167,423 @@ nav.tab button.on{color:var(--blue)}
  g.__sheets=sheets;
 })(typeof window!=='undefined'?window:globalThis);
 </script><script>/**
- * EFCARE · Giờ Tử Tế (GTT) MVP v0.2, bản máy chủ
- * Gắn vào một Google Sheet mới do tài khoản efcarehub sở hữu. Một trang web, 4 màn:
- *   1 Người giúp ghi nhận · 2 Người được giúp xác nhận · 3 Bảng tác động (cần mã quản trị) · 4 Quỹ F mô phỏng
- * Không lưu chỉ số sức khỏe. Giờ Tử Tế không phải tiền. Không quy đổi, không rút tiền mặt.
- * Mã xác nhận chỉ lưu dạng băm; người giúp thấy mã một lần lúc tạo ca.
+ * EFCARE · Giờ Tử Tế (GTT) MVP v0.3
+ * Giao diện: efcare-space.github.io/gio-tu-te/app/ (gọi cổng API doPost). Dữ liệu: Google Sheet của efcarehub.
+ * Tính năng: danh mục việc làm · ghi nhận và xác nhận ca · ví giờ · tặng giờ · gia đình · thừa kế · quy đổi tín dụng tiêu dùng (phiếu tại đối tác) · logo đối tác.
+ * Xác nhận ngắn hạn: mã ca + mã xác nhận, người xác nhận ký nhận trách nhiệm, mã định danh thành viên, vị trí, ảnh. Dài hạn: định danh trên blockchain (chưa làm).
+ * Rào chắn: giờ và tín dụng không ra tiền mặt, không quy đổi ngược, không trả lãi. Không lưu chỉ số sức khỏe.
  */
-var SHEET_CA = 'Ca';
-var SHEET_CFG = 'Cấu hình';
-var HEAD = ['Mã', 'Người giúp', 'Người được giúp', 'Nhóm', 'Phút', 'Thời điểm', 'Ghi chú', 'Mã xác nhận (băm)', 'Trạng thái', 'GTT', 'Đánh giá', 'Cho phép công khai', 'Tạo lúc', 'Xác nhận lúc', 'Số lần thử', 'Mẫu', 'Máy tạo', 'Máy xác nhận'];
-var COL = { MA: 0, GIUP: 1, NHAN: 2, NHOM: 3, PHUT: 4, LUC: 5, GHICHU: 6, BAM: 7, TT: 8, GTT: 9, SAO: 10, CONGKHAI: 11, TAO: 12, XN: 13, THU: 14, MAU: 15, DEV1: 16, DEV2: 17 };
-var GROUPS = ['Nhắc lịch và theo dõi (gọi điện)', 'Hỗ trợ thủ tục và công nghệ', 'Đồng hành tinh thần'];
+var SH = { CA: 'Ca', CFG: 'Cấu hình', TV: 'Thành viên', SO: 'Sổ giờ', PH: 'Phiếu tín dụng', DT: 'Đối tác', GD: 'Gia đình' };
+var HEAD = {
+  'Ca': ['Mã', 'Người giúp', 'Người được giúp', 'Việc', 'Phút', 'Thời điểm', 'Ghi chú', 'Mã xác nhận (băm)', 'Trạng thái', 'GTT', 'Đánh giá', 'Cho phép công khai', 'Tạo lúc', 'Xác nhận lúc', 'Số lần thử', 'Mẫu', 'Máy tạo', 'Máy xác nhận', 'Mã TV người giúp', 'Vị trí tạo', 'Vị trí xác nhận', 'Ảnh minh chứng', 'Người xác nhận', 'Quan hệ', 'Mã TV xác nhận', 'Ký trách nhiệm', 'Mã việc'],
+  'Thành viên': ['Mã', 'Tên', 'Số điện thoại', 'PIN (băm)', 'Mã gia đình', 'Vai trong gia đình', 'Người thừa kế', 'Trạng thái', 'Ngày tạo'],
+  'Sổ giờ': ['Mã giao dịch', 'Thời điểm', 'Loại', 'Mã thành viên', 'Số giờ', 'Đối ứng', 'Ghi chú'],
+  'Phiếu tín dụng': ['Mã phiếu', 'Mã thành viên', 'Số giờ', 'Giá trị (đ)', 'Đối tác', 'Trạng thái', 'Tạo lúc', 'Dùng lúc'],
+  'Đối tác': ['Tên', 'Loại (dong_hanh/tin_dung)', 'Logo URL', 'Trạng thái (hien/an)', 'Ghi chú'],
+  'Gia đình': ['Mã gia đình', 'Tên gia đình', 'Người tạo', 'Ngày tạo']
+};
+var C = { MA: 0, GIUP: 1, NHAN: 2, VIEC: 3, PHUT: 4, LUC: 5, GHICHU: 6, BAM: 7, TT: 8, GTT: 9, SAO: 10, CK: 11, TAO: 12, XN: 13, THU: 14, MAU: 15, DEV1: 16, DEV2: 17, TVG: 18, VT1: 19, VT2: 20, ANH: 21, NXN: 22, QH: 23, TVX: 24, KY: 25, MAVIEC: 26 };
+var T = { MA: 0, TEN: 1, SDT: 2, PIN: 3, GD: 4, VAI: 5, TK: 6, TT: 7, NGAY: 8 };
 var MAX_THU = 5;
+var DANH_MUC = [
+  { id: 'nhac-thuoc', ten: 'Gọi nhắc lịch thuốc, lịch tái khám', nhom: 'Nhắc lịch và theo dõi', cap: 'G1', mo: true, xacNhan: 'Người được giúp hoặc người thân xác nhận', moTa: 'Gọi điện nhắc uống thuốc theo đơn bác sĩ, nhắc lịch tái khám.' },
+  { id: 'tro-chuyen', ten: 'Trò chuyện, hỏi thăm, lắng nghe', nhom: 'Đồng hành tinh thần', cap: 'G1', mo: true, xacNhan: 'Người được giúp xác nhận', moTa: 'Gọi hoặc ghé thăm, trò chuyện, hỏi thăm an toàn. Người làm có thể chọn thu phí qua Sàn năng lực thay vì ghi giờ.' },
+  { id: 'cong-nghe', ten: 'Hướng dẫn dùng điện thoại, ứng dụng', nhom: 'Hỗ trợ công nghệ', cap: 'G1', mo: true, xacNhan: 'Người được giúp xác nhận', moTa: 'Cài và hướng dẫn dùng Zalo, gọi video, ứng dụng y tế, ngân hàng.' },
+  { id: 'thu-tuc', ten: 'Hỗ trợ hồ sơ, thủ tục bảo hiểm y tế', nhom: 'Hồ sơ và thủ tục', cap: 'G2', mo: true, xacNhan: 'Người được giúp xác nhận', moTa: 'Hướng dẫn làm thủ tục, số hóa giấy tờ y tế.' },
+  { id: 'ky-uc-so', ten: 'Ghi ký ức số cho ông bà', nhom: 'Hồ sơ và thủ tục', cap: 'G1', mo: true, xacNhan: 'Ông bà hoặc người thân xác nhận', moTa: 'Ghi câu chuyện đời, ảnh, giọng nói cho gia đình. Chủ nhân ký ức quyết định ai được xem.' },
+  { id: 'tu-do', ten: 'Hướng dẫn tự đo huyết áp, SpO2', nhom: 'Hỗ trợ tự đo', cap: 'G1', mo: true, xacNhan: 'Người được giúp xác nhận', moTa: 'Hướng dẫn dùng thiết bị đo có sẵn tại nhà. Không kết luận bệnh.' },
+  { id: 'mua-ho', ten: 'Mua hộ thực phẩm, vật dụng theo danh sách', nhom: 'Mua hộ, sinh hoạt nhẹ', cap: 'G2', mo: true, xacNhan: 'Người được giúp xác nhận, kèm ảnh hóa đơn nếu có', moTa: 'Mua theo danh sách có sẵn. Không mua thuốc kê đơn hộ.' },
+  { id: 'nha-an-toan', ten: 'Sắp xếp nhà an toàn, chống té ngã', nhom: 'Mua hộ, sinh hoạt nhẹ', cap: 'G2', mo: true, xacNhan: 'Người được giúp xác nhận, kèm ảnh', moTa: 'Dọn lối đi, gắn đèn, sắp xếp đồ dùng thường xuyên trong tầm tay.' },
+  { id: 'moi-truong', ten: 'Vệ sinh môi trường, chăm cây khu dân cư', nhom: 'Cộng đồng, môi trường', cap: 'G0', mo: true, xacNhan: 'Tổ trưởng hoặc ban quản lý xác nhận, kèm ảnh', moTa: 'Dọn vệ sinh, chăm cây xanh nơi công cộng theo hoạt động của khu dân cư.' },
+  { id: 'day-kem', ten: 'Kể chuyện, dạy kèm, truyền nghề cho thế hệ trẻ', nhom: 'Liên thế hệ', cap: 'G1', mo: true, xacNhan: 'Phụ huynh, giáo viên hoặc người học xác nhận', moTa: 'Ông bà kể chuyện, kèm học, truyền nghề; học sinh, sinh viên học từ người đầu bạc.' },
+  { id: 'nang-luc', ten: 'Giúp người đầu bạc đưa năng lực lên sàn', nhom: 'Hoàn thiện năng lực', cap: 'G1', mo: true, xacNhan: 'Người đầu bạc được giúp xác nhận', moTa: 'Hướng dẫn lập hồ sơ năng lực, kỹ năng số để tham gia Sàn năng lực đầu bạc.' },
+  { id: 'dua-kham', ten: 'Đồng hành đi khám (không cấp cứu)', nhom: 'Di chuyển và đồng hành', cap: 'G3', mo: false, xacNhan: 'Người được giúp xác nhận, kèm vị trí', moTa: 'Cần cấp G3, kiểm tra lý lịch, bảo hiểm trách nhiệm. Chưa mở ở bản MVP.' }
+];
 
-function doGet(e) {
-  var p = (e && e.parameter) || {};
-  var t = HtmlService.createTemplateFromFile('Index');
-  t.params = JSON.stringify({ ca: clean_(p.ca, 40), ma: clean_(p.ma, 12) });
-  t.base = JSON.stringify(ScriptApp.getService().getUrl());
-  return t.evaluate()
-    .setTitle('Giờ Tử Tế · EFCARE')
-    .addMetaTag('viewport', 'width=device-width, initial-scale=1, viewport-fit=cover');
-}
+function doGet() { return ContentService.createTextOutput('EFCARE Giờ Tử Tế API').setMimeType(ContentService.MimeType.TEXT); }
 
-/** Chạy một lần để tạo trang tính. Mã quản trị nằm ở trang "Cấu hình". */
 function setup() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var ca = ss.getSheetByName(SHEET_CA) || ss.insertSheet(SHEET_CA);
-  if (ca.getLastRow() === 0) ca.appendRow(HEAD);
-  // Cột dạng chữ để Google Sheets không tự đổi mã và thời điểm thành ngày
-  [COL.MA, COL.LUC, COL.BAM, COL.TAO, COL.XN].forEach(function (c) { ca.getRange(2, c + 1, 2000, 1).setNumberFormat('@'); });
-  var cfg = ss.getSheetByName(SHEET_CFG) || ss.insertSheet(SHEET_CFG);
+  Object.keys(HEAD).forEach(function (n) { var sh = ss.getSheetByName(n) || ss.insertSheet(n); if (sh.getLastRow() === 0) sh.appendRow(HEAD[n]); });
+  var ca = ss.getSheetByName(SH.CA); [C.MA, C.LUC, C.BAM, C.TAO, C.XN, C.TVG, C.TVX].forEach(function (c) { ca.getRange(2, c + 1, 2000, 1).setNumberFormat('@'); });
+  var tv = ss.getSheetByName(SH.TV); [T.MA, T.SDT, T.PIN, T.GD, T.TK].forEach(function (c) { tv.getRange(2, c + 1, 2000, 1).setNumberFormat('@'); });
+  var cfg = ss.getSheetByName(SH.CFG) || ss.insertSheet(SH.CFG);
   if (cfg.getLastRow() === 0) {
     cfg.appendRow(['Khóa', 'Giá trị', 'Ghi chú']);
-    cfg.appendRow(['MaQuanTri', String(Math.floor(100000 + Math.random() * 900000)), 'Mã để mở bảng tác động. Đổi được.']);
-    cfg.appendRow(['Muoi', randomSalt_(), 'Không đổi sau khi đã có ca, vì mã xác nhận băm theo muối này.']);
+    cfg.appendRow(['MaQuanTri', String(Math.floor(100000 + Math.random() * 900000)), 'Mã mở bảng tác động và công cụ quản trị.']);
+    cfg.appendRow(['Muoi', salt_(), 'Không đổi sau khi đã có dữ liệu.']);
+    cfg.appendRow(['GiaQuyDoiGio', '0', 'Giá trị tín dụng (đ) cho 1 giờ khi quy đổi. 0 = chưa mở quy đổi. Đặt theo số dư quỹ: (Quỹ × hệ số an toàn) ÷ tổng giờ đang lưu hành.']);
+    cfg.appendRow(['GiaTriThamChieuGio', '0', 'Giá trị tham chiếu xã hội của 1 giờ (đ), dùng cho báo cáo tác động, ví dụ GDP bình quân đầu người quy ra giờ. Không dùng để quy đổi.']);
   }
-  return 'Đã tạo. Mở trang Cấu hình để xem mã quản trị.';
+  return 'Đã tạo.';
 }
-
-function randomSalt_() {
-  var s = '', c = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  for (var i = 0; i < 24; i++) s += c.charAt(Math.floor(Math.random() * c.length));
-  return s;
-}
+function salt_() { var s = '', k = 'abcdefghijklmnopqrstuvwxyz0123456789'; for (var i = 0; i < 24; i++) s += k.charAt(Math.floor(Math.random() * k.length)); return s; }
 function ss_() { return SpreadsheetApp.getActiveSpreadsheet(); }
-function ensureSheets_() { var ss = ss_(); if (!ss.getSheetByName(SHEET_CA) || !ss.getSheetByName(SHEET_CFG)) setup(); }
-function cfg_(key) {
-  var v = ss_().getSheetByName(SHEET_CFG).getDataRange().getValues();
-  for (var i = 1; i < v.length; i++) if (String(v[i][0]) === key) return String(v[i][1]);
-  return '';
-}
-function hash_(code, otp) {
-  var raw = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, cfg_('Muoi') + '|' + code + '|' + otp);
-  return Utilities.base64Encode(raw);
-}
-function gtt_(m) {
-  m = Number(m) || 0;
-  if (m < 15) return 0;
-  if (m < 30) return 0.25;
-  if (m < 60) return 0.5;
-  return Math.min(4, 1 + 0.5 * Math.floor((m - 60) / 30));
-}
+function ensureSheets_() { var ss = ss_(); var miss = Object.keys(HEAD).some(function (n) { return !ss.getSheetByName(n); }) || !ss.getSheetByName(SH.CFG); if (miss) setup(); }
+function sh_(n) { return ss_().getSheetByName(n); }
+function rows_(n) { return sh_(n).getDataRange().getValues(); }
+function cfg_(key) { var v = rows_(SH.CFG); for (var i = 1; i < v.length; i++) if (String(v[i][0]) === key) return String(v[i][1]); return ''; }
 function str_(v) { return v instanceof Date ? v.toISOString() : String(v == null ? '' : v); }
 function clean_(t, n) { return String(t == null ? '' : t).replace(/[\u0000-\u001f<>]/g, ' ').trim().slice(0, n || 120); }
+function phone_(s) { var d = String(s || '').replace(/\D/g, ''); if (d.indexOf('84') === 0 && d.length === 11) d = '0' + d.slice(2); return /^0\d{9}$/.test(d) ? d : ''; }
+function hash_(a, b) { return Utilities.base64Encode(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, cfg_('Muoi') + '|' + a + '|' + b)); }
+function day_() { return Utilities.formatDate(new Date(), 'Asia/Ho_Chi_Minh', 'yyMMdd'); }
+function admin_(pin) { return String(pin || '') !== '' && String(pin) === cfg_('MaQuanTri'); }
+function gtt_(m) { m = Number(m) || 0; if (m < 15) return 0; if (m < 30) return 0.25; if (m < 60) return 0.5; return Math.min(4, 1 + 0.5 * Math.floor((m - 60) / 30)); }
+function round2_(x) { return Math.round(x * 100) / 100; }
+function viec_(id) { for (var i = 0; i < DANH_MUC.length; i++) if (DANH_MUC[i].id === id) return DANH_MUC[i]; return null; }
+function lock_(fn) { var l = LockService.getScriptLock(); l.waitLock(20000); try { return fn(); } finally { l.releaseLock(); } }
+function nextCode_(n, col, pre) { var v = rows_(n), k = 0; for (var i = 1; i < v.length; i++) if (str_(v[i][col]).indexOf(pre) === 0) k++; return k + 1; }
+function geo_(g) { if (!g) return ''; var a = Number(g.lat), b = Number(g.lng); if (!(a >= -90 && a <= 90 && b >= -180 && b <= 180)) return ''; return a.toFixed(5) + ',' + b.toFixed(5); }
+function dist_(a, b) { if (!a || !b) return null; var p = a.split(','), q = b.split(','); var R = 6371000, r = Math.PI / 180; var dLa = (q[0] - p[0]) * r, dLo = (q[1] - p[1]) * r; var x = Math.sin(dLa / 2) * Math.sin(dLa / 2) + Math.cos(p[0] * r) * Math.cos(q[0] * r) * Math.sin(dLo / 2) * Math.sin(dLo / 2); return Math.round(2 * R * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x))); }
+function photo_(d) { d = String(d || ''); return /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(d) && d.length <= 45000 ? d : ''; }
 
-/** Ghi nhận ca mới. p: {helper, recipient, group, minutes, when, note, paid, med, sell, emg, consent} */
+/* ---------- Danh mục và đối tác ---------- */
+function apiDanhMuc() {
+  var v = rows_(SH.DT), dt = [];
+  for (var i = 1; i < v.length; i++) if (str_(v[i][3]) !== 'an' && str_(v[i][0])) dt.push({ ten: str_(v[i][0]), loai: str_(v[i][1]), logo: str_(v[i][2]) });
+  return { ok: true, items: DANH_MUC, doiTac: dt, giaQuyDoi: Number(cfg_('GiaQuyDoiGio')) || 0 };
+}
+
+/* ---------- Thành viên, ví ---------- */
+function tvRow_(ma) { var sh = sh_(SH.TV), v = sh.getDataRange().getValues(); for (var i = 1; i < v.length; i++) if (str_(v[i][T.MA]) === ma) return { sh: sh, r: i + 1, row: v[i] }; return null; }
+function auth_(ma, pin) { var f = tvRow_(String(ma || '').trim().toUpperCase()); if (!f || str_(f.row[T.PIN]) !== hash_(str_(f.row[T.MA]), String(pin || ''))) throw new Error('Mã thành viên hoặc mã PIN chưa đúng.'); if (str_(f.row[T.TT]) === 'da_mat') throw new Error('Tài khoản đã đóng.'); return f; }
+function balance_(ma) { var v = rows_(SH.SO), s = 0; for (var i = 1; i < v.length; i++) if (str_(v[i][3]) === ma) s += Number(v[i][4]) || 0; return round2_(s); }
+function ledger_(loai, ma, gio, doiUng, ghiChu) { var pre = 'SG-' + day_() + '-'; var code = pre + ('000' + nextCode_(SH.SO, 0, pre)).slice(-4); sh_(SH.SO).appendRow([code, new Date().toISOString(), loai, ma, round2_(gio), doiUng || '', clean_(ghiChu, 200)]); return code; }
+
+function apiDangKyTV(p) {
+  p = p || {}; var ten = clean_(p.ten, 60), sdt = phone_(p.sdt), pin = String(p.pin || '');
+  if (!ten) return { ok: false, msg: 'Nhập tên.' };
+  if (!sdt) return { ok: false, msg: 'Số điện thoại chưa đúng (10 số).' };
+  if (!/^\d{4,6}$/.test(pin)) return { ok: false, msg: 'Mã PIN gồm 4 đến 6 số.' };
+  if (!p.dongY) return { ok: false, msg: 'Cần đồng ý để EFCARE lưu thông tin tài khoản.' };
+  return lock_(function () {
+    var v = rows_(SH.TV);
+    for (var i = 1; i < v.length; i++) if (str_(v[i][T.SDT]) === sdt) {
+      if (str_(v[i][T.PIN]) !== hash_(str_(v[i][T.MA]), pin)) return { ok: false, msg: 'Số điện thoại đã có tài khoản. Mã PIN chưa đúng.' };
+      return { ok: true, ma: str_(v[i][T.MA]), dangNhap: true };
+    }
+    var ma = 'TV-' + ('000' + v.length).slice(-4);
+    sh_(SH.TV).appendRow([ma, ten, sdt, hash_(ma, pin), '', '', '', 'song', new Date().toISOString()]);
+    return { ok: true, ma: ma };
+  });
+}
+
+function apiVi(ma, pin) {
+  var f = auth_(ma, pin), me = str_(f.row[T.MA]);
+  var so = rows_(SH.SO), ls = [];
+  for (var i = so.length - 1; i >= 1 && ls.length < 30; i--) if (str_(so[i][3]) === me) ls.push({ ma: str_(so[i][0]), luc: str_(so[i][1]), loai: str_(so[i][2]), gio: Number(so[i][4]) || 0, doiUng: str_(so[i][5]), ghiChu: str_(so[i][6]) });
+  var ph = rows_(SH.PH), phieu = [];
+  for (var j = 1; j < ph.length; j++) if (str_(ph[j][1]) === me) phieu.push({ ma: str_(ph[j][0]), gio: Number(ph[j][2]) || 0, giaTri: Number(ph[j][3]) || 0, doiTac: str_(ph[j][4]), trangThai: str_(ph[j][5]), tao: str_(ph[j][6]) });
+  var gdMa = str_(f.row[T.GD]), gd = null;
+  if (gdMa) {
+    var g = rows_(SH.GD), ten = ''; for (var k = 1; k < g.length; k++) if (str_(g[k][0]) === gdMa) ten = str_(g[k][1]);
+    var tv = rows_(SH.TV), mem = []; for (var m = 1; m < tv.length; m++) if (str_(tv[m][T.GD]) === gdMa) mem.push({ ma: str_(tv[m][T.MA]), ten: str_(tv[m][T.TEN]), vai: str_(tv[m][T.VAI]), trangThai: str_(tv[m][T.TT]) });
+    gd = { ma: gdMa, ten: ten, thanhVien: mem };
+  }
+  return { ok: true, tv: { ma: me, ten: str_(f.row[T.TEN]), vai: str_(f.row[T.VAI]), thuaKe: str_(f.row[T.TK]) }, soDu: balance_(me), lichSu: ls, phieu: phieu, giaDinh: gd, giaQuyDoi: Number(cfg_('GiaQuyDoiGio')) || 0 };
+}
+
+function apiTangGio(ma, pin, maDen, soGio, loiNhan) {
+  return lock_(function () {
+    var f = auth_(ma, pin), me = str_(f.row[T.MA]); maDen = String(maDen || '').trim().toUpperCase(); var g = round2_(Number(soGio) || 0);
+    if (maDen === me) return { ok: false, msg: 'Không tự tặng cho chính mình.' };
+    var to = tvRow_(maDen); if (!to || str_(to.row[T.TT]) === 'da_mat') return { ok: false, msg: 'Không tìm thấy người nhận.' };
+    if (!(g >= 0.25) || g * 4 !== Math.round(g * 4)) return { ok: false, msg: 'Số giờ tặng tối thiểu 0,25, bước 0,25.' };
+    if (g > balance_(me)) return { ok: false, msg: 'Số giờ tặng vượt số giờ đang có.' };
+    var a = ledger_('tang_di', me, -g, maDen, loiNhan); ledger_('tang_den', maDen, g, me, loiNhan);
+    return { ok: true, maGiaoDich: a, nguoiNhan: str_(to.row[T.TEN]), soDu: balance_(me) };
+  });
+}
+
+function apiTaoGiaDinh(ma, pin, ten, vai) {
+  return lock_(function () {
+    var f = auth_(ma, pin); if (str_(f.row[T.GD])) return { ok: false, msg: 'Bạn đã ở trong một gia đình.' };
+    ten = clean_(ten, 60) || ('Gia đình ' + str_(f.row[T.TEN]));
+    var code = 'GD-' + ('000' + nextCode_(SH.GD, 0, 'GD-')).slice(-4);
+    sh_(SH.GD).appendRow([code, ten, str_(f.row[T.MA]), new Date().toISOString()]);
+    f.sh.getRange(f.r, T.GD + 1).setValue(code); f.sh.getRange(f.r, T.VAI + 1).setValue(clean_(vai, 30));
+    return { ok: true, maGiaDinh: code };
+  });
+}
+function apiVaoGiaDinh(ma, pin, maGD, vai) {
+  var f = auth_(ma, pin); maGD = String(maGD || '').trim().toUpperCase();
+  if (str_(f.row[T.GD])) return { ok: false, msg: 'Bạn đã ở trong một gia đình.' };
+  var g = rows_(SH.GD), ok = false; for (var i = 1; i < g.length; i++) if (str_(g[i][0]) === maGD) ok = true;
+  if (!ok) return { ok: false, msg: 'Không tìm thấy mã gia đình.' };
+  f.sh.getRange(f.r, T.GD + 1).setValue(maGD); f.sh.getRange(f.r, T.VAI + 1).setValue(clean_(vai, 30));
+  return { ok: true, maGiaDinh: maGD };
+}
+function apiDatThuaKe(ma, pin, maThuaKe) {
+  var f = auth_(ma, pin); maThuaKe = String(maThuaKe || '').trim().toUpperCase();
+  var h = tvRow_(maThuaKe); if (!h || maThuaKe === str_(f.row[T.MA])) return { ok: false, msg: 'Người thừa kế không hợp lệ.' };
+  if (!str_(f.row[T.GD]) || str_(h.row[T.GD]) !== str_(f.row[T.GD])) return { ok: false, msg: 'Người thừa kế phải cùng gia đình trên ứng dụng.' };
+  f.sh.getRange(f.r, T.TK + 1).setValue(maThuaKe);
+  return { ok: true, nguoiThuaKe: str_(h.row[T.TEN]) };
+}
+
+function apiQuyDoi(ma, pin, soGio, doiTac) {
+  return lock_(function () {
+    var f = auth_(ma, pin), me = str_(f.row[T.MA]); var gia = Number(cfg_('GiaQuyDoiGio')) || 0; var g = round2_(Number(soGio) || 0);
+    if (gia <= 0) return { ok: false, msg: 'Quy đổi chưa mở. Quỹ đang chờ nhà tài trợ.' };
+    var dt = apiDanhMuc().doiTac.filter(function (d) { return d.loai === 'tin_dung' && d.ten === doiTac; });
+    if (!dt.length) return { ok: false, msg: 'Đối tác không nhận tín dụng hoặc chưa có trong danh sách.' };
+    if (!(g >= 0.5) || g * 2 !== Math.round(g * 2)) return { ok: false, msg: 'Quy đổi tối thiểu 0,5 giờ, bước 0,5.' };
+    if (g > balance_(me)) return { ok: false, msg: 'Số giờ quy đổi vượt số giờ đang có.' };
+    var pre = 'PH-' + day_() + '-', code = pre + ('00' + nextCode_(SH.PH, 0, pre)).slice(-3), val = Math.round(g * gia);
+    sh_(SH.PH).appendRow([code, me, g, val, doiTac, 'chua_dung', new Date().toISOString(), '']);
+    ledger_('quy_doi', me, -g, code, 'Phiếu ' + code + ' tại ' + doiTac);
+    return { ok: true, maPhieu: code, giaTri: val, doiTac: doiTac, soDu: balance_(me) };
+  });
+}
+
+/* ---------- Ca ---------- */
 function apiTaoCa(p) {
   p = p || {};
-  var helper = clean_(p.helper, 60), recipient = clean_(p.recipient, 60);
-  var m = Number(p.minutes);
+  var v = viec_(p.viec); var helper = clean_(p.helper, 60), recipient = clean_(p.recipient, 60), m = Number(p.minutes);
+  if (!v) return { ok: false, msg: 'Chọn việc trong danh mục.' };
+  if (!v.mo) return { ok: false, msg: 'Việc này chưa mở ở bản MVP (cần cấp ' + v.cap + ').' };
+  var tvg = '';
+  if (p.helperMa) { try { var f = auth_(p.helperMa, p.helperPin); tvg = str_(f.row[T.MA]); helper = str_(f.row[T.TEN]); } catch (e) { return { ok: false, msg: e.message }; } }
   if (!helper || !recipient) return { ok: false, msg: 'Thiếu tên người giúp hoặc người được giúp.' };
   if (helper.toLowerCase() === recipient.toLowerCase()) return { ok: false, msg: 'Người giúp và người được giúp không được là một người.' };
-  if (GROUPS.indexOf(p.group) < 0) return { ok: false, msg: 'Nhóm nhiệm vụ không hợp lệ.' };
-  if (p.emg) return { ok: false, emergency: true, msg: 'Có dấu hiệu cấp cứu. Gọi 115 ngay. Ca này không ghi nhận GTT.' };
-  if (p.paid) return { ok: false, msg: 'Ca đã được trả tiền công hoặc hoa hồng thì không ghi nhận GTT.' };
-  if (p.med) return { ok: false, msg: 'Kết luận bệnh, đổi thuốc, thủ thuật là việc của nhân viên y tế. Không ghi nhận GTT.' };
-  if (p.sell) return { ok: false, msg: 'Chào bán hàng hoặc tư vấn tài chính không được ghi nhận GTT.' };
+  if (p.emg) return { ok: false, emergency: true, msg: 'Có dấu hiệu cấp cứu. Gọi 115 ngay. Ca này không ghi nhận Giờ Tử Tế.' };
+  if (p.paid) return { ok: false, msg: 'Ca đã được trả tiền công hoặc hoa hồng thì không ghi nhận Giờ Tử Tế.' };
+  if (p.med) return { ok: false, msg: 'Kết luận bệnh, đổi thuốc, thủ thuật là việc của nhân viên y tế. Không ghi nhận.' };
+  if (p.sell) return { ok: false, msg: 'Chào bán hàng hoặc tư vấn tài chính không được ghi nhận.' };
   if (!p.consent) return { ok: false, msg: 'Cần có đồng ý của người được giúp để lưu thông tin ca này.' };
   if (!(m >= 15 && m <= 600)) return { ok: false, msg: 'Số phút phải từ 15 đến 600.' };
-  var lock = LockService.getScriptLock();
-  lock.waitLock(20000);
-  try {
-    var sh = ss_().getSheetByName(SHEET_CA);
-    var prefix = 'GTT-' + Utilities.formatDate(new Date(), 'Asia/Ho_Chi_Minh', 'yyMMdd') + '-';
-    var v = sh.getDataRange().getValues(), n = 0;
-    for (var i = 1; i < v.length; i++) if (String(v[i][COL.MA]).indexOf(prefix) === 0) n++;
-    var code = prefix + ('00' + (n + 1)).slice(-3);
-    var otp = String(Math.floor(100000 + Math.random() * 900000));
-    var g = gtt_(m);
-    var row = [];
-    row[COL.MA] = code; row[COL.GIUP] = helper; row[COL.NHAN] = recipient; row[COL.NHOM] = p.group; row[COL.PHUT] = m;
-    row[COL.LUC] = clean_(p.when, 30); row[COL.GHICHU] = clean_(p.note, 240); row[COL.BAM] = hash_(code, otp);
-    row[COL.TT] = 'cho'; row[COL.GTT] = g; row[COL.SAO] = ''; row[COL.CONGKHAI] = ''; row[COL.TAO] = new Date().toISOString();
-    row[COL.XN] = ''; row[COL.THU] = 0; row[COL.MAU] = ''; row[COL.DEV1] = clean_(p.dev, 40); row[COL.DEV2] = '';
-    sh.appendRow(row);
-    return { ok: true, code: code, otp: otp, gtt: g };
-  } finally { lock.releaseLock(); }
+  return lock_(function () {
+    var pre = 'GTT-' + day_() + '-'; var code = pre + ('00' + nextCode_(SH.CA, C.MA, pre)).slice(-3);
+    var otp = String(Math.floor(100000 + Math.random() * 900000)), row = [];
+    row[C.MA] = code; row[C.GIUP] = helper; row[C.NHAN] = recipient; row[C.VIEC] = v.ten; row[C.PHUT] = m; row[C.LUC] = clean_(p.when, 30); row[C.GHICHU] = clean_(p.note, 240);
+    row[C.BAM] = hash_(code, otp); row[C.TT] = 'cho'; row[C.GTT] = gtt_(m); row[C.SAO] = ''; row[C.CK] = ''; row[C.TAO] = new Date().toISOString(); row[C.XN] = ''; row[C.THU] = 0; row[C.MAU] = '';
+    row[C.DEV1] = clean_(p.dev, 40); row[C.DEV2] = ''; row[C.TVG] = tvg; row[C.VT1] = geo_(p.geo); row[C.VT2] = ''; row[C.ANH] = photo_(p.photo); row[C.NXN] = ''; row[C.QH] = ''; row[C.TVX] = ''; row[C.KY] = ''; row[C.MAVIEC] = v.id;
+    sh_(SH.CA).appendRow(row);
+    return { ok: true, code: code, otp: otp, gtt: gtt_(m), viVaoTV: tvg };
+  });
 }
-
-function findRow_(code) {
-  var sh = ss_().getSheetByName(SHEET_CA), v = sh.getDataRange().getValues();
-  code = String(code || '').trim().toUpperCase();
-  for (var i = 1; i < v.length; i++) if (String(v[i][COL.MA]).toUpperCase() === code) return { sh: sh, r: i + 1, row: v[i] };
-  return null;
-}
-function check_(code, otp) {
-  var f = findRow_(code);
-  if (!f) return { err: 'Không tìm thấy mã ca.' };
-  if (String(f.row[COL.MAU]) === '1') return { err: 'Đây là ca mẫu, không xác nhận được.' };
-  var thu = Number(f.row[COL.THU]) || 0;
-  if (thu >= MAX_THU) return { err: 'Mã ca này đã bị khóa do nhập sai nhiều lần. Báo cho người giúp tạo lại ca.' };
-  if (String(f.row[COL.TT]) !== 'cho') return { err: 'Ca này đã ở trạng thái: ' + (f.row[COL.TT] === 'ok' ? 'Có hiệu lực' : 'Đã từ chối') + '.' };
-  if (hash_(f.row[COL.MA], String(otp || '').trim()) !== String(f.row[COL.BAM])) {
-    f.sh.getRange(f.r, COL.THU + 1).setValue(thu + 1);
-    return { err: 'Mã xác nhận chưa đúng. Còn ' + (MAX_THU - thu - 1) + ' lần thử.' };
-  }
+function findCa_(code) { var sh = sh_(SH.CA), v = sh.getDataRange().getValues(); code = String(code || '').trim().toUpperCase(); for (var i = 1; i < v.length; i++) if (str_(v[i][C.MA]).toUpperCase() === code) return { sh: sh, r: i + 1, row: v[i] }; return null; }
+function checkCa_(code, otp) {
+  var f = findCa_(code); if (!f) return { err: 'Không tìm thấy mã ca.' };
+  if (String(f.row[C.MAU]) === '1') return { err: 'Đây là ca mẫu.' };
+  var thu = Number(f.row[C.THU]) || 0; if (thu >= MAX_THU) return { err: 'Mã ca đã bị khóa do nhập sai nhiều lần.' };
+  if (str_(f.row[C.TT]) !== 'cho') return { err: 'Ca này đã ở trạng thái: ' + (f.row[C.TT] === 'ok' ? 'Có hiệu lực' : 'Đã từ chối') + '.' };
+  if (hash_(str_(f.row[C.MA]), String(otp || '').trim()) !== str_(f.row[C.BAM])) { f.sh.getRange(f.r, C.THU + 1).setValue(thu + 1); return { err: 'Mã xác nhận chưa đúng. Còn ' + (MAX_THU - thu - 1) + ' lần thử.' }; }
   return { f: f };
 }
+function apiTimCa(code, otp) { var c = checkCa_(code, otp); if (c.err) return { ok: false, msg: c.err }; var r = c.f.row; return { ok: true, ca: { code: str_(r[C.MA]), helper: str_(r[C.GIUP]), recipient: str_(r[C.NHAN]), group: str_(r[C.VIEC]), minutes: Number(r[C.PHUT]) || 0, when: str_(r[C.LUC]), note: str_(r[C.GHICHU]), coAnh: !!str_(r[C.ANH]) } }; }
 
-function apiTimCa(code, otp) {
-  var c = check_(code, otp);
-  if (c.err) return { ok: false, msg: c.err };
-  var r = c.f.row;
-  return { ok: true, ca: { code: r[COL.MA], helper: r[COL.GIUP], recipient: r[COL.NHAN], group: r[COL.NHOM], minutes: r[COL.PHUT], when: str_(r[COL.LUC]), note: str_(r[COL.GHICHU]) } };
+/** x: {code, otp, rating, pub, accept, dev, nguoiXacNhan, quanHe, kyTrachNhiem, tvMa, tvPin, geo} */
+function apiXacNhan2(x) {
+  x = x || {}; var c = checkCa_(x.code, x.otp); if (c.err) return { ok: false, msg: c.err }; var f = c.f;
+  if (!x.accept) { f.sh.getRange(f.r, C.TT + 1).setValue('no'); f.sh.getRange(f.r, C.XN + 1).setValue(new Date().toISOString()); return { ok: true, accepted: false }; }
+  var ten = clean_(x.nguoiXacNhan, 60), qh = clean_(x.quanHe, 30);
+  if (!ten) return { ok: false, msg: 'Nhập tên người xác nhận.' };
+  if (!x.kyTrachNhiem) return { ok: false, msg: 'Người xác nhận cần đồng ý chịu trách nhiệm về xác nhận này.' };
+  var tvx = '';
+  if (x.tvMa) { try { var t = auth_(x.tvMa, x.tvPin); tvx = str_(t.row[T.MA]); if (tvx === str_(f.row[C.TVG])) return { ok: false, msg: 'Người giúp không tự xác nhận ca của mình.' }; } catch (e) { return { ok: false, msg: e.message }; } }
+  if (ten.toLowerCase() === str_(f.row[C.GIUP]).toLowerCase()) return { ok: false, msg: 'Người giúp không tự xác nhận ca của mình.' };
+  var set = function (col, val) { f.sh.getRange(f.r, col + 1).setValue(val); };
+  set(C.TT, 'ok'); set(C.SAO, Math.max(1, Math.min(5, Number(x.rating) || 5))); set(C.CK, x.pub ? 1 : 0); set(C.XN, new Date().toISOString()); set(C.DEV2, clean_(x.dev, 40));
+  set(C.NXN, ten); set(C.QH, qh); set(C.TVX, tvx); set(C.KY, 1); set(C.VT2, geo_(x.geo));
+  var tvg = str_(f.row[C.TVG]), g = Number(f.row[C.GTT]) || 0;
+  if (tvg) ledger_('cong_ca', tvg, g, str_(f.row[C.MA]), str_(f.row[C.VIEC]));
+  return { ok: true, accepted: true, code: str_(f.row[C.MA]), helper: str_(f.row[C.GIUP]), gtt: g, vaoVi: !!tvg };
 }
+/** Tương thích bản cũ. */
+function apiXacNhan(code, otp, rating, pub, accept, dev) { return apiXacNhan2({ code: code, otp: otp, rating: rating, pub: pub, accept: accept, dev: dev, nguoiXacNhan: 'Người được giúp', quanHe: 'Chính người được giúp', kyTrachNhiem: true }); }
 
-function apiXacNhan(code, otp, rating, pub, accept, dev) {
-  var c = check_(code, otp);
-  if (c.err) return { ok: false, msg: c.err };
-  var f = c.f;
-  if (accept) {
-    var s = Math.max(1, Math.min(5, Number(rating) || 5));
-    f.sh.getRange(f.r, COL.TT + 1).setValue('ok');
-    f.sh.getRange(f.r, COL.SAO + 1).setValue(s);
-    f.sh.getRange(f.r, COL.CONGKHAI + 1).setValue(pub ? 1 : 0);
-  } else {
-    f.sh.getRange(f.r, COL.TT + 1).setValue('no');
-  }
-  f.sh.getRange(f.r, COL.XN + 1).setValue(new Date().toISOString());
-  f.sh.getRange(f.r, COL.DEV2 + 1).setValue(clean_(dev, 40));
-  return { ok: true, accepted: !!accept, code: str_(f.row[COL.MA]), helper: str_(f.row[COL.GIUP]), gtt: Number(f.row[COL.GTT]) || 0 };
-}
+function mucXacMinh_(r) { var lv = 1, why = ['mã xác nhận của người nhận']; if (str_(r[C.TVX])) { lv++; why.push('mã định danh người xác nhận'); } var d = dist_(str_(r[C.VT1]), str_(r[C.VT2])); if (d !== null && d <= 500) { lv++; why.push('vị trí khớp (' + d + ' m)'); } if (str_(r[C.ANH])) { lv++; why.push('có ảnh'); } return { muc: lv, vi: why, khoangCach: d }; }
 
-/** Bảng tác động. Cần mã quản trị. Không trả mã băm. */
+/* ---------- Quản trị ---------- */
 function apiTongHop(pin) {
-  if (String(pin || '') !== cfg_('MaQuanTri')) return { ok: false, msg: 'Mã quản trị chưa đúng.' };
-  var v = ss_().getSheetByName(SHEET_CA).getDataRange().getValues(), out = [];
-  for (var i = 1; i < v.length; i++) {
-    var r = v[i];
-    out.push({ code: str_(r[COL.MA]), helper: str_(r[COL.GIUP]), recipient: str_(r[COL.NHAN]), group: str_(r[COL.NHOM]), minutes: Number(r[COL.PHUT]) || 0, when: str_(r[COL.LUC]), status: str_(r[COL.TT]), gtt: Number(r[COL.GTT]) || 0, rating: r[COL.SAO] === '' ? null : Number(r[COL.SAO]), publicOk: String(r[COL.CONGKHAI]) === '1', created: str_(r[COL.TAO]), demo: String(r[COL.MAU]) === '1', sameDevice: !!str_(r[COL.DEV1]) && str_(r[COL.DEV1]) === str_(r[COL.DEV2]) });
-  }
-  return { ok: true, cases: out };
+  if (!admin_(pin)) return { ok: false, msg: 'Mã quản trị chưa đúng.' };
+  var v = rows_(SH.CA), out = [];
+  for (var i = 1; i < v.length; i++) { var r = v[i], mx = mucXacMinh_(r); out.push({ code: str_(r[C.MA]), helper: str_(r[C.GIUP]), recipient: str_(r[C.NHAN]), group: str_(r[C.VIEC]), minutes: Number(r[C.PHUT]) || 0, when: str_(r[C.LUC]), status: str_(r[C.TT]), gtt: Number(r[C.GTT]) || 0, rating: r[C.SAO] === '' ? null : Number(r[C.SAO]), publicOk: String(r[C.CK]) === '1', created: str_(r[C.TAO]), demo: String(r[C.MAU]) === '1', sameDevice: !!str_(r[C.DEV1]) && str_(r[C.DEV1]) === str_(r[C.DEV2]), nguoiXacNhan: str_(r[C.NXN]), quanHe: str_(r[C.QH]), mucXacMinh: mx.muc, viSao: mx.vi, khoangCach: mx.khoangCach, coAnh: !!str_(r[C.ANH]) }); }
+  var tv = rows_(SH.TV), so = rows_(SH.SO), ph = rows_(SH.PH);
+  var tang = 0, thuaKe = 0; for (var j = 1; j < so.length; j++) { if (str_(so[j][2]) === 'tang_den') tang += Number(so[j][4]) || 0; if (str_(so[j][2]) === 'thua_ke_den') thuaKe += Number(so[j][4]) || 0; }
+  var phieu = []; for (var k = 1; k < ph.length; k++) phieu.push({ ma: str_(ph[k][0]), tv: str_(ph[k][1]), gio: Number(ph[k][2]) || 0, giaTri: Number(ph[k][3]) || 0, doiTac: str_(ph[k][4]), trangThai: str_(ph[k][5]) });
+  var mem = []; for (var m = 1; m < tv.length; m++) mem.push({ ma: str_(tv[m][T.MA]), ten: str_(tv[m][T.TEN]), gd: str_(tv[m][T.GD]), thuaKe: str_(tv[m][T.TK]), trangThai: str_(tv[m][T.TT]), soDu: balance_(str_(tv[m][T.MA])) });
+  return { ok: true, cases: out, thanhVien: mem, phieu: phieu, tongTang: round2_(tang), tongThuaKe: round2_(thuaKe), giaThamChieu: Number(cfg_('GiaTriThamChieuGio')) || 0 };
+}
+function apiDungPhieu(pin, maPhieu) {
+  if (!admin_(pin)) return { ok: false, msg: 'Mã quản trị chưa đúng.' };
+  var sh = sh_(SH.PH), v = sh.getDataRange().getValues();
+  for (var i = 1; i < v.length; i++) if (str_(v[i][0]) === maPhieu) { if (str_(v[i][5]) !== 'chua_dung') return { ok: false, msg: 'Phiếu đã dùng.' }; sh.getRange(i + 1, 6).setValue('da_dung'); sh.getRange(i + 1, 8).setValue(new Date().toISOString()); return { ok: true }; }
+  return { ok: false, msg: 'Không tìm thấy phiếu.' };
+}
+/** Thừa kế: chỉ quản trị làm, khi gia đình đã cung cấp xác nhận. Giờ là quyền được chăm sóc, không phải tài sản tiền. */
+function apiThuaKe(pin, maNguoiMat, xacNhanGiaDinh) {
+  if (!admin_(pin)) return { ok: false, msg: 'Mã quản trị chưa đúng.' };
+  if (!clean_(xacNhanGiaDinh, 200)) return { ok: false, msg: 'Ghi rõ căn cứ xác nhận của gia đình.' };
+  return lock_(function () {
+    var f = tvRow_(String(maNguoiMat || '').toUpperCase()); if (!f) return { ok: false, msg: 'Không tìm thấy thành viên.' };
+    if (str_(f.row[T.TT]) === 'da_mat') return { ok: false, msg: 'Đã xử lý trước đó.' };
+    var heir = str_(f.row[T.TK]); var h = heir ? tvRow_(heir) : null;
+    if (!h || str_(h.row[T.TT]) === 'da_mat' || str_(h.row[T.GD]) !== str_(f.row[T.GD])) return { ok: false, msg: 'Thành viên chưa đặt người thừa kế hợp lệ trong cùng gia đình.' };
+    var me = str_(f.row[T.MA]), g = balance_(me);
+    if (g > 0) { ledger_('thua_ke_di', me, -g, heir, xacNhanGiaDinh); ledger_('thua_ke_den', heir, g, me, xacNhanGiaDinh); }
+    f.sh.getRange(f.r, T.TT + 1).setValue('da_mat');
+    return { ok: true, soGio: g, nguoiThuaKe: str_(h.row[T.TEN]) };
+  });
 }
 
-/* ---------- Cổng API cho giao diện trên GitHub Pages (efcare-space.github.io) ---------- */
-var API_FNS = { apiTaoCa: apiTaoCa, apiTimCa: apiTimCa, apiXacNhan: apiXacNhan, apiTongHop: apiTongHop };
+/* ---------- Cổng API ---------- */
+function guard_(f) { return function () { try { return f.apply(null, arguments); } catch (e) { return { ok: false, msg: String(e && e.message || e) }; } }; }
+var API_FNS = { apiDanhMuc: apiDanhMuc, apiDangKyTV: apiDangKyTV, apiVi: apiVi, apiTangGio: apiTangGio, apiTaoGiaDinh: apiTaoGiaDinh, apiVaoGiaDinh: apiVaoGiaDinh, apiDatThuaKe: apiDatThuaKe, apiQuyDoi: apiQuyDoi, apiTaoCa: apiTaoCa, apiTimCa: apiTimCa, apiXacNhan: apiXacNhan, apiXacNhan2: apiXacNhan2, apiTongHop: apiTongHop, apiDungPhieu: apiDungPhieu, apiThuaKe: apiThuaKe };
+Object.keys(API_FNS).forEach(function (k) { API_FNS[k] = guard_(API_FNS[k]); });
 function doPost(e) {
   var out;
-  try {
-    ensureSheets_();
-    var req = JSON.parse((e && e.postData && e.postData.contents) || '{}');
-    var fn = API_FNS[req.fn];
-    if (!fn) throw new Error('Yêu cầu không hợp lệ.');
-    out = { ok: true, data: fn.apply(null, req.args || []) };
-  } catch (err) {
-    out = { ok: false, error: String(err && err.message || err) };
-  }
+  try { ensureSheets_(); var req = JSON.parse((e && e.postData && e.postData.contents) || '{}'); var fn = API_FNS[req.fn]; if (!fn) throw new Error('Yêu cầu không hợp lệ.'); out = { ok: true, data: fn.apply(null, req.args || []) }; }
+  catch (err) { out = { ok: false, error: String(err && err.message || err) }; }
   return ContentService.createTextOutput(JSON.stringify(out)).setMimeType(ContentService.MimeType.JSON);
 }
-</script><script>(function(){var API=window.API_URL||'',KEY='efcare_gtt_app_v1',FN=["apiTaoCa", "apiTimCa", "apiXacNhan", "apiTongHop"];
+</script><script>(function(){var API=window.API_URL||'',KEY='efcare_gtt_app_v3',FN=["apiDanhMuc", "apiDangKyTV", "apiVi", "apiTangGio", "apiTaoGiaDinh", "apiVaoGiaDinh", "apiDatThuaKe", "apiQuyDoi", "apiTaoCa", "apiTimCa", "apiXacNhan", "apiXacNhan2", "apiTongHop", "apiDungPhieu", "apiThuaKe"];
 window.__PARAMS=(function(){var p={};location.search.replace('?','').split('&').forEach(function(x){var kv=x.split('=');if(kv[0])p[kv[0]]=decodeURIComponent(kv[1]||'')});return p})();
 window.__BASE=location.href.split('?')[0].split('#')[0];
 if(!API){var sheets=window.__sheets;window.__save=function(){try{var o={};Object.keys(sheets).forEach(function(k){o[k]=sheets[k].rows});localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}};
  var had=false;try{var d=JSON.parse(localStorage.getItem(KEY)||'null');if(d){Object.keys(d).forEach(function(k){var sh=SpreadsheetApp.getActiveSpreadsheet().insertSheet(k);sh.rows=d[k]});had=true}}catch(e){}
- if(!had){setup();window.__save()}window.__DEMO_PIN=cfg_('MaQuanTri');}
+ if(!had){setup();sheets['Đối tác'].rows.push(['Đối tác mẫu (nhận tín dụng)','tin_dung','','hien','Bản thử']);sheets['Đối tác'].rows.push(['Đơn vị đồng hành mẫu','dong_hanh','','hien','Bản thử']);sheets['Cấu hình'].rows.forEach(function(r){if(r[0]==='GiaQuyDoiGio')r[1]='40000'});window.__save()}
+ window.__DEMO_PIN=cfg_('MaQuanTri');}
 function mk(){var o={_s:null,_f:null,withSuccessHandler:function(f){var n=mk();n._s=f;n._f=this._f;return n},withFailureHandler:function(f){var n=mk();n._f=f;n._s=this._s;return n}};
  FN.forEach(function(name){o[name]=function(){var a=[].slice.call(arguments),s=o._s,f=o._f;
-  if(API){fetch(API,{method:'POST',credentials:'omit',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({fn:name,args:a})}).then(function(r){return r.json()}).then(function(j){if(j.ok){if(s)s(j.data)}else if(f)f(new Error(j.error))}).catch(function(e){if(f)f(e)})}
-  else setTimeout(function(){try{var r=window[name].apply(null,a);window.__save();if(s)s(JSON.parse(JSON.stringify(r)))}catch(e){if(f)f(e)}},100)}});return o}
+  if(API){fetch(API,{method:'POST',credentials:'omit',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({fn:name,args:a})}).then(function(r){return r.json()}).then(function(j){if(j.ok){if(s)s(j.data)}else if(s)s({ok:false,msg:j.error})}).catch(function(e){if(f)f(e)})}
+  else setTimeout(function(){try{var r=API_FNS[name].apply(null,a);window.__save();if(s)s(JSON.parse(JSON.stringify(r)))}catch(e){if(f)f(e)}},80)}});return o}
 window.google={script:{run:mk()}};
-document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('div');b.style.cssText='background:'+(API?'#13795b':'#7a5410')+';color:#fff;font:13px/1.4 system-ui,sans-serif;padding:7px 14px;text-align:center';b.textContent=API?'Đã kết nối máy chủ EFCARE · dữ liệu thật':'Chế độ thử · dữ liệu chỉ lưu trên máy này, chưa kết nối máy chủ';document.body.insertBefore(b,document.body.firstChild)});
-})();</script>
-<script>
-(function(){
- var $=function(i){return document.getElementById(i)};
- var PARAMS=window.__PARAMS||{},BASE=window.__BASE||'';
- function call(fn){var a=[].slice.call(arguments,1);return new Promise(function(res,rej){google.script.run.withSuccessHandler(res).withFailureHandler(function(e){rej(e)})[fn].apply(null,a)})}
- function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
- function fmt(n){return (Math.round(n*100)/100).toString().replace('.',',')}
- function vnd(n){return Math.round(n).toLocaleString('vi-VN')}
- function two(n){return n<10?'0'+n:''+n}
- function nowLocal(){var d=new Date();return d.getFullYear()+'-'+two(d.getMonth()+1)+'-'+two(d.getDate())+'T'+two(d.getHours())+':'+two(d.getMinutes())}
- function dt(s){try{var d=new Date(s);if(isNaN(d))return s;return two(d.getDate())+'/'+two(d.getMonth()+1)+' '+two(d.getHours())+':'+two(d.getMinutes())}catch(e){return s}}
- function gtt(m){m=Number(m)||0;if(m<15)return 0;if(m<30)return .25;if(m<60)return .5;return Math.min(4,1+.5*Math.floor((m-60)/30))}
- var LS={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
- var DEV=LS.get('gtt_dev');if(!DEV){DEV='d'+Math.random().toString(36).slice(2,12);LS.set('gtt_dev',DEV)}
- function toast(t){var e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},2600)}
- function busy(b,on){b.disabled=on;b.classList.toggle('busy',on)}
- function netErr(box,retry){box.innerHTML='<div class="msg no">Không kết nối được. Kiểm tra mạng rồi thử lại. Thông tin bạn đã nhập vẫn còn nguyên.</div>'}
-
- /* nav */
- var tabs=document.querySelectorAll('#tab button');
- function show(p){[].forEach.call(tabs,function(b){b.classList.toggle('on',b.dataset.p===p)});['a','b','c','d'].forEach(function(k){$('s-'+k).classList.toggle('on',k===p)});if(p==='d')renderD();window.scrollTo(0,0)}
- [].forEach.call(tabs,function(b){b.onclick=function(){show(b.dataset.p)}});
-
- /* A */
- var GROUPS=[['Nhắc lịch và theo dõi (gọi điện)','☎','Gọi nhắc uống thuốc, nhắc lịch tái khám'],['Hỗ trợ thủ tục và công nghệ','▣','Giúp làm thủ tục, dùng điện thoại, ứng dụng'],['Đồng hành tinh thần','♡','Trò chuyện, lắng nghe, hỏi thăm']];
- var QS=[['paid','Việc này đã được trả tiền công hoặc hoa hồng chăm sóc?'],['med','Có kết luận bệnh, đổi thuốc hoặc làm thủ thuật y khoa?'],['sell','Có chào bán hàng hoặc tư vấn tài chính?'],['emg','Có dấu hiệu cấp cứu (đau ngực, khó thở, yếu liệt đột ngột)?']];
- var st={group:GROUPS[0][0],minutes:30,q:{paid:0,med:0,sell:0,emg:0},step:1};
- $('groups').innerHTML=GROUPS.map(function(g,i){return '<button type="button" class="opt'+(i===0?' on':'')+'" data-i="'+i+'"><i>'+g[1]+'</i><span>'+esc(g[0])+'<small>'+esc(g[2])+'</small></span></button>'}).join('');
- [].forEach.call($('groups').children,function(b){b.onclick=function(){st.group=GROUPS[b.dataset.i][0];[].forEach.call($('groups').children,function(x){x.classList.toggle('on',x===b)})}});
- var MINS=[15,30,45,60,90,120];
- $('mins').innerHTML=MINS.map(function(m){return '<button type="button" class="chip'+(m===30?' on':'')+'" data-m="'+m+'">'+m+' phút</button>'}).join('');
- function live(){var g=gtt(st.minutes);$('live').innerHTML=st.minutes>=15?'Được ghi nhận: <b>'+fmt(g)+' GTT</b>':'<span style="color:#c0392b">Cần ít nhất 15 phút</span>'}
- [].forEach.call($('mins').children,function(b){b.onclick=function(){st.minutes=Number(b.dataset.m);$('minutes').value='';[].forEach.call($('mins').children,function(x){x.classList.toggle('on',x===b)});live()}});
- $('minutes').oninput=function(){var v=Number(this.value);[].forEach.call($('mins').children,function(x){x.classList.remove('on')});st.minutes=v;live()};
- $('qs').innerHTML=QS.map(function(q){return '<div class="q"><p>'+esc(q[1])+'</p><div class="seg" data-k="'+q[0]+'"><button type="button" class="on no" data-v="0">Không</button><button type="button" data-v="1">Có</button></div></div>'}).join('');
- [].forEach.call($('qs').querySelectorAll('.seg'),function(sg){[].forEach.call(sg.children,function(b){b.onclick=function(){var v=Number(b.dataset.v);st.q[sg.dataset.k]=v;[].forEach.call(sg.children,function(x){x.className='';});b.className='on '+(v?'yes':'no')}})});
- $('when').value=nowLocal();live();
- var savedHelper=LS.get('gtt_helper');if(savedHelper)$('helper').value=savedHelper;
- function step(n){st.step=n;['a-1','a-2','a-3'].forEach(function(id,i){$(id).style.display=(i+1===n)?'block':'none'});[].forEach.call($('a-dots').children,function(d,i){d.classList.toggle('on',i<n)});window.scrollTo(0,0)}
- $('a-n1').onclick=function(){var ok=true;$('e-helper').textContent='';$('e-recipient').textContent='';
-  if(!$('helper').value.trim()){$('e-helper').textContent='Nhập tên của bạn.';ok=false}
-  if(!$('recipient').value.trim()){$('e-recipient').textContent='Nhập tên người bạn giúp.';ok=false}
-  else if($('helper').value.trim().toLowerCase()===$('recipient').value.trim().toLowerCase()){$('e-recipient').textContent='Người giúp và người được giúp không được là một người.';ok=false}
-  if(ok){LS.set('gtt_helper',$('helper').value.trim());step(2)}};
- $('a-b2').onclick=function(){step(1)};
- $('a-n2').onclick=function(){if(!(st.minutes>=15&&st.minutes<=600)){$('e-min').textContent='Số phút từ 15 đến 600.';return}$('e-min').textContent='';step(3)};
- $('a-b3').onclick=function(){step(2)};
- var lastMsg='';
- $('a-go').onclick=function(){
-  var b=$('a-go'),box=$('a-msg');box.innerHTML='';$('e-consent').textContent='';
-  if(!$('consent').checked){$('e-consent').textContent='Cần có đồng ý của người được giúp.';return}
-  var p={helper:$('helper').value,recipient:$('recipient').value,group:st.group,minutes:st.minutes,when:$('when').value,note:$('note').value,paid:!!st.q.paid,med:!!st.q.med,sell:!!st.q.sell,emg:!!st.q.emg,consent:true,dev:DEV};
-  busy(b,true);
-  call('apiTaoCa',p).then(function(r){busy(b,false);
-   if(!r||!r.ok){box.innerHTML='<div class="msg no">'+(r&&r.emergency?'<b>Có dấu hiệu cấp cứu.</b> Gọi <b>115</b> ngay. Việc này không ghi nhận GTT.':esc(r&&r.msg||'Không ghi nhận được.'))+'</div>';return}
-   $('a-form').style.display='none';$('a-done').style.display='block';
-   $('a-done-t').innerHTML='<b>Đã ghi nhận.</b> '+fmt(r.gtt)+' GTT đang chờ người được giúp xác nhận.';
-   $('d-code').textContent=r.code;$('d-otp').textContent=r.otp;
-   var link=BASE?(BASE+(BASE.indexOf('?')>-1?'&':'?')+'ca='+encodeURIComponent(r.code)+'&ma='+encodeURIComponent(r.otp)):'';
-   lastMsg='Chào '+p.recipient+', '+p.helper+' vừa ghi nhận một việc tử tế dành cho bạn ('+p.group.toLowerCase()+', '+p.minutes+' phút). Nếu đúng, bạn bấm xác nhận giúp nhé: '+(link||('mã ca '+r.code+', mã xác nhận '+r.otp))+(link?'':'')+'\nMã ca: '+r.code+' · Mã xác nhận: '+r.otp;
-   window.scrollTo(0,0);
-  }).catch(function(){busy(b,false);netErr(box)});
- };
- $('d-share').onclick=function(){if(navigator.share){navigator.share({text:lastMsg}).catch(function(){})}else{copy(lastMsg)}};
- $('d-copy').onclick=function(){copy(lastMsg)};
- function copy(t){function ok(){toast('Đã sao chép lời nhắn. Dán vào Zalo hoặc tin nhắn.')}
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fallback()})}else fallback();
-  function fallback(){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){toast('Không sao chép được. Hãy chụp màn hình mã.')}document.body.removeChild(ta)}}
- $('d-new').onclick=function(){$('a-done').style.display='none';$('a-form').style.display='block';$('recipient').value='';$('note').value='';$('consent').checked=false;st.q={paid:0,med:0,sell:0,emg:0};[].forEach.call($('qs').querySelectorAll('.seg'),function(sg){sg.children[0].className='on no';sg.children[1].className=''});$('when').value=nowLocal();step(1)};
-
- /* B */
- var cur=null;
- function find(){
-  var b=$('v-go'),box=$('b-msg');box.innerHTML='';var code=$('v-code').value.trim(),o=$('v-otp').value.trim();
-  if(!code||!o){box.innerHTML='<div class="msg warn">Nhập đủ mã ca và mã xác nhận.</div>';return}
-  busy(b,true);
-  call('apiTimCa',code,o).then(function(r){busy(b,false);
-   if(!r||!r.ok){box.innerHTML='<div class="msg no">'+esc(r&&r.msg||'Không tìm thấy.')+'</div>';return}
-   var c=r.ca;cur={code:code,otp:o,rate:5,pub:false};
-   $('b-find').style.display='none';$('b-detail').style.display='block';
-   $('b-detail').innerHTML='<div class="card"><p>Có người báo đã giúp bạn:</p><p style="margin:8px 0"><b>'+esc(c.helper)+'</b> đã giúp <b>'+esc(c.recipient)+'</b></p><p>'+esc(c.group)+'</p><p><b>'+esc(c.minutes)+' phút</b>, lúc '+esc(dt(c.when))+'</p>'+(c.note?'<p class="note" style="font-size:16px">Ghi chú: '+esc(c.note)+'</p>':'')+'</div>'+
-    '<div class="card"><b>Bạn thấy sự giúp đỡ này thế nào?</b><div class="stars" id="stars">'+[1,2,3,4,5].map(function(i){return '<button type="button" data-s="'+i+'" class="on" aria-label="'+i+' sao">★</button>'}).join('')+'</div>'+
-    '<label class="chk" style="font-size:17px"><input type="checkbox" id="v-pub"><span>Tôi đồng ý chia sẻ câu chuyện này (ẩn danh) để kêu gọi quỹ. Không tick là không công khai.</span></label></div>'+
-    '<button class="btn ok" type="button" id="v-ok"><span class="sp"></span><span>Đúng, tôi đã được giúp</span></button><button class="btn no" type="button" id="v-no" style="margin-top:12px"><span class="sp"></span><span>Không đúng</span></button>';
-   [].forEach.call($('stars').children,function(s){s.onclick=function(){cur.rate=Number(s.dataset.s);[].forEach.call($('stars').children,function(x){x.classList.toggle('on',Number(x.dataset.s)<=cur.rate)})}});
-   function done(acc){var btn=acc?$('v-ok'):$('v-no');busy(btn,true);
-    call('apiXacNhan',cur.code,cur.otp,cur.rate,$('v-pub').checked,acc,DEV).then(function(x){
-     if(!x||!x.ok){busy(btn,false);toast(x&&x.msg||'Không xác nhận được.');return}
-     $('b-detail').innerHTML=x.accepted?'<div class="msg ok"><b>Cảm ơn bạn.</b> Việc của '+esc(x.helper)+' đã được ghi nhận: '+fmt(x.gtt)+' GTT.</div>':'<div class="msg warn">Đã ghi nhận là không đúng. Việc này không tính GTT.</div>';cur=null
-    }).catch(function(){busy(btn,false);toast('Không kết nối được. Thử lại.')})}
-   $('v-ok').onclick=function(){done(true)};$('v-no').onclick=function(){done(false)};
-  }).catch(function(){busy(b,false);netErr(box)});
- }
- $('v-go').onclick=find;
- if(PARAMS.ca){$('v-code').value=PARAMS.ca;$('v-otp').value=PARAMS.ma||'';show('b');if(PARAMS.ma)find()}
-
- /* C */
- var ROWS=[],PIN='',FILTER='all';
- function loadBoard(){var b=$('pinGo'),m=$('pinMsg');m.innerHTML='';var pin=$('pin').value.trim();busy(b,true);
-  call('apiTongHop',pin).then(function(r){busy(b,false);
-   if(!r||!r.ok){m.innerHTML='<div class="msg no">'+esc(r&&r.msg||'Không mở được.')+'</div>';return}
-   PIN=pin;ROWS=r.cases;$('c-gate').style.display='none';$('board').style.display='block';renderC()
-  }).catch(function(){busy(b,false);netErr(m)})}
- $('pinGo').onclick=loadBoard;$('pin').onkeydown=function(e){if(e.key==='Enter')loadBoard()};
- if(window.__DEMO_PIN)$('demoHint').textContent='Bản demo: mã quản trị là '+window.__DEMO_PIN+'.';
- function renderC(){
-  var all=ROWS,ok=all.filter(function(c){return c.status==='ok'}),cho=all.filter(function(c){return c.status==='cho'}),done=all.filter(function(c){return c.status!=='cho'});
-  var hrs=ok.reduce(function(a,c){return a+c.gtt},0),hp={},rp={};ok.forEach(function(c){hp[c.helper.toLowerCase()]=1;rp[c.recipient.toLowerCase()]=1});
-  var conf=done.length?Math.round(ok.length/done.length*100):0,rated=ok.filter(function(c){return c.rating}),avg=rated.length?rated.reduce(function(a,c){return a+c.rating},0)/rated.length:0;
-  var nd=all.filter(function(c){return c.demo}).length;$('demoWarn').innerHTML=nd?'<div class="msg no" style="margin:0 0 12px"><b>Có '+nd+' ca MẪU</b> trong số liệu. Không dùng làm bằng chứng.</div>':'';
-  var K=[[fmt(hrs),'GTT có hiệu lực'],[ok.length+'/'+all.length,'Ca hiệu lực / tổng'],[Object.keys(hp).length,'Người giúp'],[Object.keys(rp).length,'Người được giúp'],[conf+'%','Tỷ lệ xác nhận'],[cho.length,'Đang chờ'],[rated.length?fmt(avg):'–','Đánh giá TB (1–5)'],[ok.filter(function(c){return c.publicOk}).length,'Cho phép công khai']];
-  $('kpis').innerHTML=K.map(function(k){return '<div class="kpi"><b>'+k[0]+'</b><span>'+k[1]+'</span></div>'}).join('');
-  var g={};ok.forEach(function(c){g[c.group]=(g[c.group]||0)+c.gtt});var mx=Math.max.apply(null,Object.keys(g).map(function(k){return g[k]}).concat([1]));
-  $('bars').innerHTML=Object.keys(g).length?Object.keys(g).map(function(k){return '<div style="margin:10px 0"><div style="display:flex;justify-content:space-between;font-size:14px"><span>'+esc(k)+'</span><b>'+fmt(g[k])+'</b></div><div class="bar"><i style="width:'+Math.round(g[k]/mx*100)+'%"></i></div></div>'}).join(''):'<p class="note">Chưa có ca nào có hiệu lực.</p>';
-  var fl=[],per={};all.forEach(function(c){var k=c.helper.toLowerCase()+'|'+String(c.when).slice(0,10);per[k]=(per[k]||0)+1;if(c.gtt>=4)fl.push('Ca '+c.code+' đạt trần 4,0 GTT.');if(c.sameDevice&&c.status==='ok')fl.push('Ca '+c.code+' được xác nhận trên cùng máy với người ghi: gọi lại người được giúp.')});
-  Object.keys(per).forEach(function(k){if(per[k]>3)fl.push('Người giúp "'+k.split('|')[0]+'" có '+per[k]+' ca trong ngày '+k.split('|')[1]+'.')});
-  cho.forEach(function(c){if(Date.now()-new Date(c.created).getTime()>3*86400000)fl.push('Ca '+c.code+' chờ quá 3 ngày.')});
-  $('flags').innerHTML=fl.length?fl.map(function(t){return '<p style="font-size:15px;margin:6px 0">• '+esc(t)+'</p>'}).join(''):'<p class="note">Chưa có dấu hiệu bất thường.</p>';
-  var list=all.filter(function(c){return FILTER==='all'||c.status===FILTER}).slice().reverse();
-  $('cases').innerHTML=list.length?list.map(function(c){return '<div class="case"><div class="h"><span>'+esc(c.code)+(c.demo?' · MẪU':'')+'</span><span class="st '+c.status+'">'+(c.status==='ok'?'Có hiệu lực':c.status==='no'?'Từ chối':'Chờ')+'</span></div><b>'+esc(c.helper)+' → '+esc(c.recipient)+'</b><div class="m">'+esc(c.group)+' · '+c.minutes+' phút · '+fmt(c.gtt)+' GTT'+(c.rating?' · '+c.rating+'★':'')+'</div>'+(c.sameDevice?'<span class="flag">Xác nhận cùng máy</span>':'')+'</div>'}).join(''):'<p class="note">Không có ca nào.</p>';
- }
- [].forEach.call($('flt').children,function(b){b.onclick=function(){FILTER=b.dataset.f;[].forEach.call($('flt').children,function(x){x.classList.toggle('on',x===b)});renderC()}});
- $('csv').onclick=function(){var h=['ma','nguoi_giup','nguoi_duoc_giup','nhom','phut','gtt','trang_thai','danh_gia','cho_phep_cong_khai','xac_nhan_cung_may','mau'];
-  var rows=ROWS.map(function(c){return [c.code,c.helper,c.recipient,c.group,c.minutes,c.gtt,c.status,c.rating||'',c.publicOk?1:0,c.sameDevice?1:0,c.demo?1:0].map(function(v){return '"'+String(v).replace(/"/g,'""')+'"'}).join(',')});
-  var blob=new Blob(['﻿'+h.join(',')+'\n'+rows.join('\n')],{type:'text/csv;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='gtt-so-ghi-nhan.csv';a.click()};
-
- /* D */
- function renderD(){var F=Number($('s-f').value)||0,s=Number($('s-s').value)||0,D=Number($('s-d').value)||0,w=$('s-warn');
-  var real=ROWS.filter(function(c){return c.status==='ok'&&!c.demo}).reduce(function(a,c){return a+c.gtt},0);
-  if(s<0.7||s>0.9){w.style.display='block';w.textContent='Hệ số s nằm ngoài khoảng 0,7 đến 0,9 của SOP.'}else w.style.display='none';
-  $('s-price').textContent=D>0?vnd(F*s/D):'–';$('s-real').textContent=PIN?fmt(real):'mở bảng ở mục Tác động';
-  $('s-tbl').querySelector('tbody').innerHTML=[1000,5000,20000,50000,100000].map(function(d){return '<tr><td style="padding:8px 0;border-top:1px solid #dbe3f0">D = '+vnd(d)+'</td><td style="padding:8px 0;border-top:1px solid #dbe3f0;text-align:right"><b>'+vnd(F*s/d)+'</b> đ/GTT</td></tr>'}).join('')}
- ['s-f','s-s','s-d'].forEach(function(i){$(i).oninput=renderD});
+document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('div');b.style.cssText='background:'+(API?'#13795b':'#7a5410')+';color:#fff;font:13px/1.4 system-ui,sans-serif;padding:7px 14px;text-align:center';b.textContent=API?'Đã kết nối máy chủ EFCARE · dữ liệu thật':'Chế độ thử · dữ liệu chỉ lưu trên máy này, có đối tác mẫu và giá quy đổi mẫu';document.body.insertBefore(b,document.body.firstChild)});
+})();</script><script>(function(){
+var $=function(i){return document.getElementById(i)};
+var PARAMS=window.__PARAMS||{},BASE=window.__BASE||'';
+function call(fn){var a=[].slice.call(arguments,1);return new Promise(function(res,rej){google.script.run.withSuccessHandler(res).withFailureHandler(rej)[fn].apply(null,a)})}
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function fmt(n){return (Math.round(n*100)/100).toString().replace('.',',')}
+function vnd(n){return Math.round(n||0).toLocaleString('vi-VN')}
+function two(n){return n<10?'0'+n:''+n}
+function nowLocal(){var d=new Date();return d.getFullYear()+'-'+two(d.getMonth()+1)+'-'+two(d.getDate())+'T'+two(d.getHours())+':'+two(d.getMinutes())}
+function dt(s){var d=new Date(s);return isNaN(d)?s:two(d.getDate())+'/'+two(d.getMonth()+1)+' '+two(d.getHours())+':'+two(d.getMinutes())}
+function gtt(m){m=Number(m)||0;if(m<15)return 0;if(m<30)return .25;if(m<60)return .5;return Math.min(4,1+.5*Math.floor((m-60)/30))}
+var LS={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}},del:function(k){try{localStorage.removeItem(k)}catch(e){}}};
+var DEV=LS.get('gtt_dev');if(!DEV){DEV='d'+Math.random().toString(36).slice(2,12);LS.set('gtt_dev',DEV)}
+var SES=null;try{SES=JSON.parse(LS.get('gtt_ses')||'null')}catch(e){}
+function toast(t){var e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},2800)}
+function busy(b,on){if(!b)return;b.disabled=on;b.classList.toggle('busy',on)}
+function net(box){box.innerHTML='<div class="msg no">Không kết nối được. Kiểm tra mạng rồi thử lại. Thông tin đã nhập vẫn còn.</div>'}
+function bad(box,r){box.innerHTML='<div class="msg no">'+esc(r&&(r.msg||r.error)||'Chưa làm được.')+'</div>'}
+var tabs=document.querySelectorAll('#tab button');
+function show(p){[].forEach.call(tabs,function(b){b.classList.toggle('on',b.dataset.p===p)});['a','b','w','l','c'].forEach(function(k){$('s-'+k).classList.toggle('on',k===p)});if(p==='w')drawW();window.scrollTo(0,0)}
+[].forEach.call(tabs,function(b){b.onclick=function(){show(b.dataset.p)}});
+function getGeo(cb){if(!navigator.geolocation){toast('Máy không hỗ trợ định vị.');return}navigator.geolocation.getCurrentPosition(function(p){cb({lat:p.coords.latitude,lng:p.coords.longitude})},function(){toast('Chưa lấy được vị trí. Có thể bỏ qua.')},{timeout:8000,maximumAge:60000})}
+function shrink(file,cb){var r=new FileReader();r.onload=function(){var img=new Image();img.onload=function(){var s=Math.min(1,320/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext('2d').drawImage(img,0,0,c.width,c.height);var q=.6,d=c.toDataURL('image/jpeg',q);while(d.length>44000&&q>.2){q-=.1;d=c.toDataURL('image/jpeg',q)}cb(d.length<=44000?d:'')};img.src=r.result};r.readAsDataURL(file)}
+/* danh mục, đối tác */
+var DM={items:[],doiTac:[],giaQuyDoi:0};
+function partners(id){var lg=DM.doiTac.filter(function(d){return d.loai==='dong_hanh'||d.loai==='tin_dung'});var h='<h4>Đơn vị đồng hành</h4><div class="lgs">';if(lg.length)h+=lg.map(function(d){return '<div>'+(d.logo?'<img src="'+esc(d.logo)+'" alt="'+esc(d.ten)+'">':esc(d.ten))+'</div>'}).join('');else h+='<div>Logo đối tác</div><div>Logo đối tác</div><div>Logo đối tác</div>';h+='</div><p class="note">Logo chỉ hiển thị khi đơn vị đã ký đồng hành.</p>';$(id).innerHTML=h}
+function drawL(){$('l-box').innerHTML=DM.items.map(function(v,i){return '<div class="card'+(v.mo?'':' off')+'" style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;gap:8px"><b>'+(i+1)+'. '+esc(v.ten)+'</b><span class="cap" style="font-size:11px;font-weight:800;background:#eef3fb;color:#1d5fd1;border-radius:8px;padding:2px 7px;height:fit-content">'+esc(v.cap)+'</span></div><p class="note" style="margin-top:4px">'+esc(v.nhom)+'</p><p style="font-size:15px;margin-top:4px">'+esc(v.moTa)+'</p><p class="note">Xác nhận: '+esc(v.xacNhan)+(v.mo?'':' · <b>Chưa mở ở bản MVP</b>')+'</p></div>'}).join('');partners('pt-l');partners('pt-a')}
+/* GHI NHẬN */
+var st={viec:'',minutes:30,q:{paid:0,med:0,sell:0,emg:0},geo:null,photo:''};
+var QS=[['paid','Việc này đã được trả tiền công hoặc hoa hồng?'],['med','Có kết luận bệnh, đổi thuốc hoặc thủ thuật y khoa?'],['sell','Có chào bán hàng hoặc tư vấn tài chính?'],['emg','Có dấu hiệu cấp cứu (đau ngực, khó thở, yếu liệt đột ngột)?']];
+function drawViec(){$('viecs').innerHTML=DM.items.map(function(v){return '<button type="button" class="opt'+(v.mo?'':' off')+(st.viec===v.id?' on':'')+'" data-id="'+v.id+'"'+(v.mo?'':' disabled')+'><span>'+esc(v.ten)+'<small>'+esc(v.nhom)+(v.mo?'':' · chưa mở')+'</small></span><span class="cap">'+esc(v.cap)+'</span></button>'}).join('');[].forEach.call($('viecs').children,function(b){b.onclick=function(){st.viec=b.dataset.id;drawViec()}})}
+var MINS=[15,30,45,60,90,120];
+$('mins').innerHTML=MINS.map(function(m){return '<button type="button" class="chip'+(m===30?' on':'')+'" data-m="'+m+'">'+m+' phút</button>'}).join('');
+function live(){$('live').innerHTML=st.minutes>=15?'Được ghi nhận: <b>'+fmt(gtt(st.minutes))+' giờ</b>':'<span style="color:#c0392b">Cần ít nhất 15 phút</span>'}
+[].forEach.call($('mins').children,function(b){b.onclick=function(){st.minutes=+b.dataset.m;$('minutes').value='';[].forEach.call($('mins').children,function(x){x.classList.toggle('on',x===b)});live()}});
+$('minutes').oninput=function(){st.minutes=+this.value;[].forEach.call($('mins').children,function(x){x.classList.remove('on')});live()};
+$('qs').innerHTML=QS.map(function(q){return '<div class="q"><p>'+esc(q[1])+'</p><div class="seg" data-k="'+q[0]+'"><button type="button" class="on no" data-v="0">Không</button><button type="button" data-v="1">Có</button></div></div>'}).join('');
+function bindSeg(){[].forEach.call($('qs').querySelectorAll('.seg'),function(sg){[].forEach.call(sg.children,function(b){b.onclick=function(){var v=+b.dataset.v;st.q[sg.dataset.k]=v;[].forEach.call(sg.children,function(x){x.className=''});b.className='on '+(v?'yes':'no')}})})}bindSeg();
+function proofTxt(){$('proofA').innerHTML=(st.photo?'✓ Đã có ảnh minh chứng. ':'')+(st.geo?'✓ Đã gắn vị trí. ':'')+'Không chụp mặt người được giúp nếu họ chưa đồng ý.'}
+$('photo').onchange=function(){var f=this.files&&this.files[0];if(!f)return;shrink(f,function(d){st.photo=d;if(!d)toast('Ảnh quá lớn, thử ảnh khác.');proofTxt()})};
+$('geoA').onclick=function(){getGeo(function(g){st.geo=g;proofTxt()})};
+function who(){if(SES){$('a-who').innerHTML='Bạn: <b>'+esc(SES.ten)+'</b> ('+esc(SES.ma)+'). Giờ sẽ vào ví của bạn khi người nhận xác nhận.';$('a-helperBox').style.display='none'}else{$('a-who').innerHTML='Chưa đăng nhập: giờ vẫn được ghi nhận nhưng chưa vào ví. <a href="#" id="toW">Đăng nhập ví giờ</a>';$('a-helperBox').style.display='block';var a=$('toW');if(a)a.onclick=function(e){e.preventDefault();show('w')}}}
+function step(n){['a-1','a-2','a-3'].forEach(function(id,i){$(id).style.display=(i+1===n)?'block':'none'});[].forEach.call($('a-dots').children,function(d,i){d.classList.toggle('on',i<n)});window.scrollTo(0,0)}
+$('a-n1').onclick=function(){var ok=true,h=SES?SES.ten:$('helper').value.trim(),r=$('recipient').value.trim();$('e-helper').textContent='';$('e-recipient').textContent='';
+ if(!h){$('e-helper').textContent='Nhập tên của bạn.';ok=false}if(!r){$('e-recipient').textContent='Nhập tên người bạn giúp.';ok=false}else if(h.toLowerCase()===r.toLowerCase()){$('e-recipient').textContent='Người giúp và người được giúp không được là một người.';ok=false}if(ok)step(2)};
+$('a-b2').onclick=function(){step(1)};$('a-b3').onclick=function(){step(2)};
+$('a-n2').onclick=function(){$('e-viec').textContent='';$('e-min').textContent='';if(!st.viec){$('e-viec').textContent='Chọn một việc.';return}if(!(st.minutes>=15&&st.minutes<=600)){$('e-min').textContent='Số phút từ 15 đến 600.';return}step(3)};
+var lastMsg='';
+$('a-go').onclick=function(){var b=this,box=$('a-msg');box.innerHTML='';$('e-consent').textContent='';if(!$('consent').checked){$('e-consent').textContent='Cần có đồng ý của người được giúp.';return}
+ var p={viec:st.viec,helper:$('helper').value,recipient:$('recipient').value,minutes:st.minutes,when:$('when').value,note:$('note').value,paid:!!st.q.paid,med:!!st.q.med,sell:!!st.q.sell,emg:!!st.q.emg,consent:true,dev:DEV,geo:st.geo,photo:st.photo};
+ if(SES){p.helperMa=SES.ma;p.helperPin=SES.pin}
+ busy(b,true);call('apiTaoCa',p).then(function(r){busy(b,false);if(!r||!r.ok){box.innerHTML='<div class="msg no">'+(r&&r.emergency?'<b>Có dấu hiệu cấp cứu.</b> Gọi <b>115</b> ngay. Việc này không ghi nhận Giờ Tử Tế.':esc(r&&r.msg||'Chưa ghi nhận được.'))+'</div>';return}
+  $('a-form').style.display='none';$('a-done').style.display='block';$('a-done-t').innerHTML='<b>Đã ghi nhận.</b> '+fmt(r.gtt)+' giờ đang chờ người được giúp xác nhận.'+(r.viVaoTV?' Giờ sẽ vào ví '+esc(r.viVaoTV)+'.':'');
+  $('d-code').textContent=r.code;$('d-otp').textContent=r.otp;var link=BASE?(BASE+'?ca='+encodeURIComponent(r.code)+'&ma='+encodeURIComponent(r.otp)):'';var hn=SES?SES.ten:p.helper;
+  lastMsg='Chào '+p.recipient+', '+hn+' vừa ghi nhận một việc tử tế dành cho bạn ('+p.minutes+' phút). Nếu đúng, bạn bấm xác nhận giúp nhé: '+link+'\nMã ca: '+r.code+' · Mã xác nhận: '+r.otp;window.scrollTo(0,0)}).catch(function(){busy(b,false);net(box)})};
+function copy(t){function ok(){toast('Đã sao chép. Dán vào Zalo hoặc tin nhắn.')}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,fb);else fb();function fb(){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){toast('Hãy chụp màn hình mã.')}document.body.removeChild(ta)}}
+$('d-share').onclick=function(){if(navigator.share)navigator.share({text:lastMsg}).catch(function(){});else copy(lastMsg)};$('d-copy').onclick=function(){copy(lastMsg)};
+$('d-new').onclick=function(){$('a-done').style.display='none';$('a-form').style.display='block';$('recipient').value='';$('note').value='';$('consent').checked=false;st={viec:'',minutes:30,q:{paid:0,med:0,sell:0,emg:0},geo:null,photo:''};$('qs').innerHTML=QS.map(function(q){return '<div class="q"><p>'+esc(q[1])+'</p><div class="seg" data-k="'+q[0]+'"><button type="button" class="on no" data-v="0">Không</button><button type="button" data-v="1">Có</button></div></div>'}).join('');bindSeg();drawViec();proofTxt();live();$('when').value=nowLocal();step(1)};
+/* XÁC NHẬN */
+var cur=null;
+function find(){var b=$('v-go'),box=$('b-msg');box.innerHTML='';var code=$('v-code').value.trim(),o=$('v-otp').value.trim();if(!code||!o){box.innerHTML='<div class="msg warn">Nhập đủ mã ca và mã xác nhận.</div>';return}busy(b,true);
+ call('apiTimCa',code,o).then(function(r){busy(b,false);if(!r||!r.ok){bad(box,r);return}var c=r.ca;cur={code:code,otp:o,rate:5,geo:null};$('b-find').style.display='none';$('b-detail').style.display='block';
+  $('b-detail').innerHTML='<div class="card"><p>Có người báo đã giúp:</p><p style="margin:8px 0"><b>'+esc(c.helper)+'</b> đã giúp <b>'+esc(c.recipient)+'</b></p><p>'+esc(c.group)+'</p><p><b>'+esc(c.minutes)+' phút</b>, lúc '+esc(dt(c.when))+'</p>'+(c.note?'<p class="note" style="font-size:16px">Ghi chú: '+esc(c.note)+'</p>':'')+(c.coAnh?'<p class="note" style="font-size:15px">✓ Người giúp có gửi ảnh minh chứng</p>':'')+'</div>'+
+  '<div class="card"><b>Ai đang xác nhận?</b><label class="t" for="x-ten">Tên người xác nhận</label><input type="text" id="x-ten" value="'+esc(c.recipient)+'"><label class="t" for="x-qh">Quan hệ</label><select id="x-qh"><option>Chính người được giúp</option><option>Người thân</option><option>Tổ trưởng, ban quản lý</option><option>Giáo viên, phụ huynh</option><option>Khác</option></select>'+
+  '<details style="margin-top:12px"'+(SES?' open':'')+'><summary style="font-weight:700;cursor:pointer;min-height:44px;display:flex;align-items:center">Tôi có tài khoản Giờ Tử Tế (tăng mức xác minh)</summary><div class="row"><div><label class="t" for="x-tv">Mã thành viên</label><input type="text" id="x-tv" value="'+(SES?esc(SES.ma):'')+'" autocapitalize="characters"></div><div><label class="t" for="x-pin">Mã PIN</label><input type="password" id="x-pin" inputmode="numeric" value="'+(SES?esc(SES.pin):'')+'"></div></div></details>'+
+  '<button class="btn alt" type="button" id="geoB" style="margin-top:12px">📍 Gắn vị trí xác nhận</button><p class="note" id="geoBt">Vị trí khớp với nơi người giúp ghi nhận sẽ tăng mức xác minh.</p></div>'+
+  '<div class="card"><b>Bạn thấy sự giúp đỡ này thế nào?</b><div class="stars" id="stars">'+[1,2,3,4,5].map(function(i){return '<button type="button" data-s="'+i+'" class="on">★</button>'}).join('')+'</div><label class="chk"><input type="checkbox" id="v-pub"><span>Đồng ý chia sẻ câu chuyện này (ẩn danh) để kêu gọi quỹ.</span></label>'+
+  '<label class="chk"><input type="checkbox" id="v-ky"><span><b>Tôi xác nhận việc này có thật và chịu trách nhiệm như người giúp nếu xác nhận sai.</b></span></label></div>'+
+  '<button class="btn ok" type="button" id="v-ok"><span class="sp"></span><span>Đúng, tôi xác nhận</span></button><button class="btn no" type="button" id="v-no" style="margin-top:12px"><span class="sp"></span><span>Không đúng</span></button>';
+  [].forEach.call($('stars').children,function(s){s.onclick=function(){cur.rate=+s.dataset.s;[].forEach.call($('stars').children,function(x){x.classList.toggle('on',+x.dataset.s<=cur.rate)})}});
+  $('geoB').onclick=function(){getGeo(function(g){cur.geo=g;$('geoBt').textContent='✓ Đã gắn vị trí xác nhận.'})};
+  function done(acc){var btn=acc?$('v-ok'):$('v-no');if(acc&&!$('v-ky').checked){toast('Cần đánh dấu ô chịu trách nhiệm.');return}busy(btn,true);
+   call('apiXacNhan2',{code:cur.code,otp:cur.otp,accept:acc,rating:cur.rate,pub:$('v-pub').checked,dev:DEV,nguoiXacNhan:$('x-ten').value,quanHe:$('x-qh').value,kyTrachNhiem:$('v-ky').checked,tvMa:$('x-tv').value.trim(),tvPin:$('x-pin').value.trim(),geo:cur.geo}).then(function(x){if(!x||!x.ok){busy(btn,false);toast(x&&x.msg||'Chưa xác nhận được.');return}
+    $('b-detail').innerHTML=x.accepted?'<div class="msg ok"><b>Cảm ơn bạn.</b> Việc của '+esc(x.helper)+' đã được ghi nhận: '+fmt(x.gtt)+' giờ'+(x.vaoVi?', đã vào ví của người giúp.':'.')+'</div>':'<div class="msg warn">Đã ghi nhận là không đúng. Việc này không tính giờ.</div>';cur=null}).catch(function(){busy(btn,false);toast('Không kết nối được.')})}
+  $('v-ok').onclick=function(){done(true)};$('v-no').onclick=function(){done(false)}}).catch(function(){busy(b,false);net(box)})}
+$('v-go').onclick=find;
+/* VÍ */
+var W=null;
+function drawW(){var box=$('w-box');if(!SES){box.innerHTML='<h2>Ví giờ của tôi</h2><p class="sub">Đăng ký hoặc đăng nhập bằng số điện thoại và mã PIN. Giờ Tử Tế không phải tiền: không rút tiền mặt, không trả lãi.</p><div class="card"><label class="t" for="r-ten" style="margin-top:0">Tên</label><input type="text" id="r-ten"><label class="t" for="r-sdt">Số điện thoại</label><input type="tel" id="r-sdt" inputmode="tel"><label class="t" for="r-pin">Mã PIN (4–6 số)</label><input type="password" id="r-pin" inputmode="numeric" maxlength="6"><label class="chk"><input type="checkbox" id="r-dy"><span>Tôi đồng ý để EFCARE lưu thông tin tài khoản.</span></label><button class="btn" id="r-go"><span class="sp"></span><span>Vào ví</span></button><div id="r-msg"></div><p class="note">Đã có tài khoản: nhập đúng số điện thoại và mã PIN để đăng nhập.</p></div>';
+  $('r-go').onclick=function(){var b=this;busy(b,true);var pin=$('r-pin').value.trim();call('apiDangKyTV',{ten:$('r-ten').value,sdt:$('r-sdt').value,pin:pin,dongY:$('r-dy').checked}).then(function(r){busy(b,false);if(!r||!r.ok){bad($('r-msg'),r);return}SES={ma:r.ma,pin:pin,ten:$('r-ten').value.trim()};LS.set('gtt_ses',JSON.stringify(SES));who();loadW()}).catch(function(){busy(b,false);net($('r-msg'))})};return}
+ loadW()}
+function loadW(){var box=$('w-box');box.innerHTML='<p class="note">Đang tải ví...</p>';call('apiVi',SES.ma,SES.pin).then(function(r){if(!r||!r.ok){bad(box,r);if(r&&/PIN|đóng/.test(r.msg||'')){SES=null;LS.del('gtt_ses');who()}return}W=r;SES.ten=r.tv.ten;LS.set('gtt_ses',JSON.stringify(SES));who();renderW()}).catch(function(){net(box)})}
+var LOAI={cong_ca:'Ca được xác nhận',tang_di:'Tặng đi',tang_den:'Được tặng',quy_doi:'Quy đổi tín dụng',thua_ke_di:'Thừa kế chuyển đi',thua_ke_den:'Nhận thừa kế'};
+function renderW(){var r=W,gd=r.giaDinh,mem=gd?gd.thanhVien.filter(function(m){return m.ma!==r.tv.ma&&m.trangThai!=='da_mat'}):[];
+ var tinDung=DM.doiTac.filter(function(d){return d.loai==='tin_dung'});
+ var h='<div class="bal"><span>'+esc(r.tv.ten)+' · '+esc(r.tv.ma)+'</span><b>'+fmt(r.soDu)+' giờ</b><span>Giờ Tử Tế đang có</span></div>';
+ h+='<div class="card"><b>Tặng giờ</b><p class="note">Tặng cho cha mẹ, ông bà hoặc người khác có tài khoản.</p>'+(mem.length?'<label class="t">Người trong gia đình</label><select id="g-to"><option value="">Chọn người</option>'+mem.map(function(m){return '<option value="'+esc(m.ma)+'">'+esc(m.ten)+(m.vai?' ('+esc(m.vai)+')':'')+'</option>'}).join('')+'</select>':'')+'<label class="t" for="g-ma">Hoặc nhập mã thành viên</label><input type="text" id="g-ma" autocapitalize="characters" placeholder="TV-0002"><label class="t" for="g-gio">Số giờ</label><input type="number" id="g-gio" step="0.25" min="0.25" inputmode="decimal" value="1"><label class="t" for="g-ln">Lời nhắn</label><input type="text" id="g-ln" maxlength="100" placeholder="Con tặng mẹ"><button class="btn" id="g-go"><span class="sp"></span><span>Tặng giờ</span></button></div>';
+ h+='<div class="card"><b>Quy đổi sang tín dụng tiêu dùng</b>'+(r.giaQuyDoi>0&&tinDung.length?'<p class="note">1 giờ = '+vnd(r.giaQuyDoi)+' đ tín dụng, dùng tại đối tác dưới dạng phiếu. Không đổi ra tiền mặt, không đổi ngược.</p><label class="t">Đối tác</label><select id="q-dt">'+tinDung.map(function(d){return '<option>'+esc(d.ten)+'</option>'}).join('')+'</select><label class="t" for="q-gio">Số giờ</label><input type="number" id="q-gio" step="0.5" min="0.5" value="1" inputmode="decimal"><div class="note" id="q-val"></div><button class="btn" id="q-go"><span class="sp"></span><span>Đổi thành phiếu</span></button>':'<p class="note">Quy đổi chưa mở. Quỹ đang chờ nhà tài trợ và đối tác nhận tín dụng.</p>')+'</div>';
+ h+='<div class="card"><b>Gia đình</b>'+(gd?'<p style="margin:6px 0">'+esc(gd.ten)+' · mã <b>'+esc(gd.ma)+'</b></p><p class="note">Gửi mã này cho người thân để họ vào gia đình.</p>'+gd.thanhVien.map(function(m){return '<div class="li"><span>'+esc(m.ten)+(m.vai?' · '+esc(m.vai):'')+(m.trangThai==='da_mat'?' · đã mất':'')+'</span><span class="note" style="margin:0">'+esc(m.ma)+'</span></div>'}).join('')+'<label class="t">Người thừa kế giờ của tôi</label><select id="k-to"><option value="">Chưa chọn</option>'+mem.map(function(m){return '<option value="'+esc(m.ma)+'"'+(r.tv.thuaKe===m.ma?' selected':'')+'>'+esc(m.ten)+'</option>'}).join('')+'</select><button class="btn alt" id="k-go"><span class="sp"></span><span>Lưu người thừa kế</span></button><p class="note">Giờ là quyền được chăm sóc, không phải tài sản tiền. Việc chuyển giờ cho người thừa kế do quản trị thực hiện khi gia đình gửi xác nhận.</p>':
+  '<p class="note">Lập gia đình để tặng giờ cho cha mẹ, ông bà nhanh hơn và đặt người thừa kế.</p><label class="t" for="f-ten">Tên gia đình</label><input type="text" id="f-ten" placeholder="Nhà bà Lan"><label class="t" for="f-vai">Vai của bạn</label><input type="text" id="f-vai" placeholder="Con, cháu, bố, mẹ, ông, bà"><button class="btn alt" id="f-new"><span class="sp"></span><span>Lập gia đình mới</span></button><label class="t" for="f-ma">Hoặc vào gia đình đã có</label><input type="text" id="f-ma" autocapitalize="characters" placeholder="GD-0001"><button class="btn alt" id="f-join"><span class="sp"></span><span>Vào gia đình</span></button>')+'</div>';
+ if(r.phieu.length)h+='<div class="card"><b>Phiếu tín dụng</b>'+r.phieu.map(function(p){return '<div class="li"><span>'+esc(p.ma)+' · '+esc(p.doiTac)+'<br><span class="note" style="margin:0">'+(p.trangThai==='da_dung'?'Đã dùng':'Chưa dùng · đưa mã này cho đối tác')+'</span></span><b>'+vnd(p.giaTri)+' đ</b></div>'}).join('')+'</div>';
+ h+='<div class="card"><b>Lịch sử</b>'+(r.lichSu.length?r.lichSu.map(function(x){return '<div class="li"><span>'+esc(LOAI[x.loai]||x.loai)+'<br><span class="note" style="margin:0">'+esc(dt(x.luc))+(x.doiUng?' · '+esc(x.doiUng):'')+'</span></span><span class="'+(x.gio>=0?'pos':'neg')+'">'+(x.gio>=0?'+':'')+fmt(x.gio)+'</span></div>'}).join(''):'<p class="note">Chưa có giao dịch.</p>')+'</div>';
+ h+='<div id="w-msg"></div><button class="btn alt" id="w-out">Đăng xuất</button>';
+ $('w-box').innerHTML=h;
+ var gt=$('g-to');if(gt)gt.onchange=function(){$('g-ma').value=this.value};
+ $('g-go').onclick=function(){var b=this;busy(b,true);call('apiTangGio',SES.ma,SES.pin,$('g-ma').value,$('g-gio').value,$('g-ln').value).then(function(x){busy(b,false);if(!x||!x.ok){toast(x&&x.msg||'Chưa tặng được.');return}toast('Đã tặng cho '+x.nguoiNhan+'.');loadW()}).catch(function(){busy(b,false);toast('Không kết nối được.')})};
+ var qg=$('q-gio');if(qg){var upd=function(){$('q-val').textContent='= '+vnd((+qg.value||0)*r.giaQuyDoi)+' đ tín dụng'};qg.oninput=upd;upd();$('q-go').onclick=function(){var b=this;busy(b,true);call('apiQuyDoi',SES.ma,SES.pin,qg.value,$('q-dt').value).then(function(x){busy(b,false);if(!x||!x.ok){toast(x&&x.msg||'Chưa đổi được.');return}toast('Đã tạo phiếu '+x.maPhieu+'.');loadW()}).catch(function(){busy(b,false);toast('Không kết nối được.')})}}
+ var kg=$('k-go');if(kg)kg.onclick=function(){if(!$('k-to').value){toast('Chọn người thừa kế.');return}busy(kg,true);call('apiDatThuaKe',SES.ma,SES.pin,$('k-to').value).then(function(x){busy(kg,false);toast(x.ok?'Đã lưu người thừa kế: '+x.nguoiThuaKe+'.':x.msg);loadW()})};
+ var fn=$('f-new');if(fn)fn.onclick=function(){busy(fn,true);call('apiTaoGiaDinh',SES.ma,SES.pin,$('f-ten').value,$('f-vai').value).then(function(x){busy(fn,false);if(!x.ok){toast(x.msg);return}toast('Đã lập gia đình '+x.maGiaDinh+'.');loadW()})};
+ var fj=$('f-join');if(fj)fj.onclick=function(){busy(fj,true);call('apiVaoGiaDinh',SES.ma,SES.pin,$('f-ma').value,$('f-vai').value).then(function(x){busy(fj,false);if(!x.ok){toast(x.msg);return}toast('Đã vào gia đình.');loadW()})};
+ $('w-out').onclick=function(){SES=null;LS.del('gtt_ses');who();drawW()};
+}
+/* QUẢN TRỊ */
+var PIN='',D=null;
+if(window.__DEMO_PIN)$('demoHint').textContent='Bản thử: mã quản trị là '+window.__DEMO_PIN+'.';
+function loadC(){var b=$('pinGo'),m=$('pinMsg'),pin=PIN||$('pin').value.trim();busy(b,true);call('apiTongHop',pin).then(function(r){busy(b,false);if(!r||!r.ok){bad(m,r);return}PIN=pin;D=r;$('c-gate').style.display='none';$('board').style.display='block';renderC()}).catch(function(){busy(b,false);net(m)})}
+$('pinGo').onclick=loadC;
+function renderC(){var all=D.cases,ok=all.filter(function(c){return c.status==='ok'}),cho=all.filter(function(c){return c.status==='cho'}),done=all.filter(function(c){return c.status!=='cho'});
+ var hrs=ok.reduce(function(a,c){return a+c.gtt},0),hp={},rp={};ok.forEach(function(c){hp[c.helper.toLowerCase()]=1;rp[c.recipient.toLowerCase()]=1});
+ var phT=D.phieu.reduce(function(a,p){return a+p.giaTri},0),phD=D.phieu.filter(function(p){return p.trangThai==='da_dung'}).reduce(function(a,p){return a+p.giaTri},0);
+ var K=[[fmt(hrs),'Giờ có hiệu lực'],[ok.length+'/'+all.length,'Ca hiệu lực / tổng'],[Object.keys(hp).length,'Người giúp'],[Object.keys(rp).length,'Người được giúp'],[done.length?Math.round(ok.length/done.length*100)+'%':'–','Tỷ lệ xác nhận'],[fmt(D.tongTang),'Giờ đã tặng'],[fmt(D.tongThuaKe),'Giờ thừa kế'],[vnd(phT)+' / '+vnd(phD),'Tín dụng phát / đã dùng (đ)']];
+ var lv=[0,0,0,0,0];ok.forEach(function(c){lv[c.mucXacMinh]++});
+ var fl=[],pair={};all.forEach(function(c){if(c.sameDevice&&c.status==='ok')fl.push('Ca '+c.code+' xác nhận trên cùng máy với người ghi.');if(c.khoangCach!==null&&c.khoangCach>1000)fl.push('Ca '+c.code+': vị trí ghi và xác nhận cách nhau '+vnd(c.khoangCach)+' m.');if(c.status==='ok'&&c.nguoiXacNhan){var k=c.helper.toLowerCase()+'→'+c.nguoiXacNhan.toLowerCase();pair[k]=(pair[k]||0)+1}});
+ Object.keys(pair).forEach(function(k){if(pair[k]>3)fl.push('Cặp người giúp và người xác nhận "'+k+'" lặp lại '+pair[k]+' lần: kiểm tra ngẫu nhiên.')});
+ cho.forEach(function(c){if(Date.now()-new Date(c.created).getTime()>3*86400000)fl.push('Ca '+c.code+' chờ quá 3 ngày.')});
+ var h='<h2>Bảng tác động</h2><div class="kpis">'+K.map(function(k){return '<div class="kpi"><b>'+k[0]+'</b><span>'+k[1]+'</span></div>'}).join('')+'</div>';
+ h+='<div class="card"><b>Mức xác minh của ca có hiệu lực</b><p class="note">1 = mã xác nhận · +1 mã định danh người xác nhận · +1 vị trí khớp · +1 ảnh. Dài hạn: định danh trên blockchain.</p>'+[1,2,3,4].map(function(i){return '<div style="margin:8px 0"><div style="display:flex;justify-content:space-between;font-size:14px"><span>Mức '+i+'</span><b>'+lv[i]+'</b></div><div class="bar"><i style="width:'+(ok.length?lv[i]/ok.length*100:0)+'%"></i></div></div>'}).join('')+'</div>';
+ h+='<div class="card"><b>Việc cần xem lại</b>'+(fl.length?fl.map(function(t){return '<p style="font-size:14.5px;margin:6px 0">• '+esc(t)+'</p>'}).join(''):'<p class="note">Chưa có dấu hiệu bất thường.</p>')+'</div>';
+ h+='<div class="card"><b>Ca gần đây</b>'+(all.length?all.slice().reverse().slice(0,30).map(function(c){return '<div class="li"><span><b>'+esc(c.helper)+' → '+esc(c.recipient)+'</b><br><span class="note" style="margin:0">'+esc(c.code)+' · '+esc(c.group)+' · '+fmt(c.gtt)+' giờ'+(c.nguoiXacNhan?' · xác nhận: '+esc(c.nguoiXacNhan)+' ('+esc(c.quanHe)+')':'')+'</span>'+(c.status==='ok'?'<br><span class="lv lv'+c.mucXacMinh+'">Mức xác minh '+c.mucXacMinh+'</span>':'')+'</span><span class="st '+c.status+'">'+(c.status==='ok'?'Hiệu lực':c.status==='no'?'Từ chối':'Chờ')+'</span></div>'}).join(''):'<p class="note">Chưa có ca.</p>')+'</div>';
+ h+='<div class="card"><b>Phiếu tín dụng</b>'+(D.phieu.length?D.phieu.slice().reverse().map(function(p){return '<div class="li"><span>'+esc(p.ma)+' · '+esc(p.doiTac)+'<br><span class="note" style="margin:0">'+esc(p.tv)+' · '+fmt(p.gio)+' giờ · '+vnd(p.giaTri)+' đ</span></span>'+(p.trangThai==='chua_dung'?'<button class="btn sm" data-ph="'+esc(p.ma)+'">Đánh dấu đã dùng</button>':'<span class="st ok">Đã dùng</span>')+'</div>'}).join(''):'<p class="note">Chưa có phiếu.</p>')+'</div>';
+ h+='<div class="card"><b>Thành viên và thừa kế</b><p class="note">Chỉ xử lý thừa kế khi gia đình gửi xác nhận (ví dụ giấy chứng tử). Ghi rõ căn cứ.</p>'+(D.thanhVien.length?D.thanhVien.map(function(m){return '<div class="li"><span>'+esc(m.ten)+' · '+esc(m.ma)+'<br><span class="note" style="margin:0">'+fmt(m.soDu)+' giờ'+(m.gd?' · '+esc(m.gd):'')+(m.thuaKe?' · thừa kế: '+esc(m.thuaKe):'')+(m.trangThai==='da_mat'?' · đã mất':'')+'</span></span>'+(m.trangThai!=='da_mat'&&m.thuaKe?'<button class="btn no sm" data-tk="'+esc(m.ma)+'">Xử lý thừa kế</button>':'')+'</div>'}).join(''):'<p class="note">Chưa có thành viên.</p>')+'</div>';
+ h+='<div class="card sim"><b>Giá một giờ</b><p class="note">Giá quy đổi thực đặt ở trang Cấu hình (GiaQuyDoiGio), theo số dư quỹ. Giá trị tham chiếu xã hội (GiaTriThamChieuGio, ví dụ GDP bình quân đầu người quy ra giờ) chỉ dùng cho báo cáo tác động.</p><div class="li"><span>Giá trị tham chiếu xã hội</span><b>'+(D.giaThamChieu?vnd(D.giaThamChieu)+' đ/giờ':'chưa đặt')+'</b></div><div class="li"><span>Giá trị xã hội của giờ có hiệu lực</span><b>'+(D.giaThamChieu?vnd(hrs*D.giaThamChieu)+' đ':'–')+'</b></div></div>';
+ h+='<button class="btn alt" id="c-re">Tải lại</button>';
+ $('board').innerHTML=h;
+ [].forEach.call(document.querySelectorAll('[data-ph]'),function(b){b.onclick=function(){busy(b,true);call('apiDungPhieu',PIN,b.dataset.ph).then(function(x){if(!x.ok)toast(x.msg);loadC()})}});
+ [].forEach.call(document.querySelectorAll('[data-tk]'),function(b){b.onclick=function(){var cc=prompt('Căn cứ xác nhận của gia đình (bắt buộc):');if(!cc)return;busy(b,true);call('apiThuaKe',PIN,b.dataset.tk,cc).then(function(x){toast(x.ok?'Đã chuyển '+fmt(x.soGio)+' giờ cho '+x.nguoiThuaKe+'.':x.msg);loadC()})}});
+ $('c-re').onclick=loadC;
+}
+/* khởi động */
+$('when').value=nowLocal();live();who();proofTxt();
+call('apiDanhMuc').then(function(r){if(r&&r.ok){DM=r;drawViec();drawL()}}).catch(function(){});
+if(PARAMS.ca){$('v-code').value=PARAMS.ca;$('v-otp').value=PARAMS.ma||'';show('b');if(PARAMS.ma)find()}
 })();
 </script>
-</body>
-</html>
+</body></html>
