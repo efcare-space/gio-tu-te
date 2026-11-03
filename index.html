@@ -195,7 +195,7 @@ footer{padding:40px 0 60px;color:var(--mut);font-size:13px;text-align:center}
  <div class="layers3">
   <div class="ly"><b class="n" style="background:#0f766e">Lớp 1</b><div><b>Hành động tử tế.</b> Sáu nhóm việc được phép: đồng hành đi khám (không cấp cứu) · hỗ trợ hồ sơ, thủ tục, số hóa giấy tờ · mua hộ, sắp xếp nhà an toàn chống té ngã · gọi nhắc lịch thuốc theo đơn, nhắc tái khám · hướng dẫn tự đo huyết áp, SpO2 bằng thiết bị có sẵn · trò chuyện, lắng nghe, hỏi thăm an toàn.</div></div>
   <div class="ly"><b class="n" style="background:#2c4a7a">Lớp 2</b><div><b>Sổ Giờ Tử Tế.</b> Ghi thời gian đã xác minh theo định mức: 30 phút là 0,5 giờ, 60 phút là 1 giờ, mỗi 30 phút thêm 0,5, tối đa 4 giờ một ca. Ca dưới 30 phút chỉ tính cho việc làm từ xa.</div></div>
-  <div class="ly"><b class="n" style="background:#b7791f">Lớp 3</b><div><b>Tín dụng chăm sóc.</b> Giờ có thể quy đổi một chiều sang tín dụng phí chăm sóc, dùng cho dịch vụ chuyên môn trong mạng lưới, được bảo chứng bằng Quỹ Care for Care (trích 1% doanh thu EFCARE cộng tài trợ). Không quy đổi ngược, không rút tiền mặt.</div></div>
+  <div class="ly"><b class="n" style="background:#b7791f">Lớp 3</b><div><b>Tín dụng chăm sóc.</b> Giờ có thể quy đổi một chiều sang tín dụng phí chăm sóc, dùng cho dịch vụ chuyên môn trong mạng lưới, được bảo chứng bằng Quỹ Care for Care (nguồn: tài trợ của doanh nghiệp, tổ chức và tiền công người làm tự nguyện góp). Không quy đổi ngược, không rút tiền mặt.</div></div>
  </div>
  <h3 style="margin:28px 0 12px;font-size:19px">Ba cách một giờ tử tế quay trở lại</h3>
  <div class="uses">
@@ -224,10 +224,10 @@ footer{padding:40px 0 60px;color:var(--mut);font-size:13px;text-align:center}
     <div><b id="cC">–</b><span>Tỷ lệ xác nhận</span></div><div><b id="cF">0</b><span>Giờ tặng gia đình</span></div><div><b id="cU">0</b><span>Tín dụng chăm sóc đã dùng (đ)</span></div></div></div>
    <div class="panel map"><h4>Hiếu nghĩa từ xa</h4><svg viewBox="0 0 420 130"><rect width="420" height="130" rx="12" fill="#f3f7f6"/><path id="mPath" d="M70 70 C 160 10, 260 10, 350 70" stroke="#b7791f" stroke-width="3" stroke-dasharray="6 6" fill="none"/><circle cx="70" cy="70" r="11" fill="#0f766e"/><circle cx="350" cy="70" r="11" fill="#2c4a7a"/><text x="70" y="102" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0f766e">Hà Nội · Lan</text><text x="350" y="102" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#2c4a7a">Nam Định · mẹ Lan</text><circle id="mDot" cx="70" cy="70" r="8" fill="#f6d38a" stroke="#b7791f" stroke-width="2" opacity="0"/><text id="mTxt" x="210" y="122" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#5d667a">Giờ của con có thể thành người đến thăm cha mẹ</text></svg></div>
    <div class="panel fund"><h4>Quỹ Care for Care <span class="dm-tag">số giả định</span></h4>
-    <div class="row2"><div><label>Doanh thu EFCARE/năm (đ)</label><input id="fRev" type="number" value="10000000000"></div><div><label>Tài trợ đã nhận (đ)</label><input id="fSpon" type="number" value="200000000"></div></div>
+    <div class="row2"><div><label>Tiền công người làm tự nguyện góp (đ)</label><input id="fRev" type="number" value="20000000"></div><div><label>Tài trợ đã nhận (đ)</label><input id="fSpon" type="number" value="200000000"></div></div>
     <div class="row2" style="margin-top:8px"><div><label>Hệ số an toàn s</label><input id="fS" type="number" step="0.05" value="0.8"></div><div><label>Giờ đang chờ quy đổi toàn hệ thống</label><input id="fD" type="number" value="6000"></div></div>
-    <div class="formula">Quỹ F = 1% doanh thu + tài trợ − đã chi = <b id="fF">–</b> đ<br>Giá mỗi giờ khi quy đổi = F × s ÷ D = <b id="fP">–</b> đ</div>
-    <div class="fbar"><i id="fBar" style="width:100%"></i></div><p class="note" style="margin-top:6px">Quỹ trích 1% doanh thu EFCARE cộng tài trợ. Quy đổi một chiều, không ra tiền mặt. Doanh thu, tài trợ, số giờ ở đây là số nhập thử.</p></div>
+    <div class="formula">Quỹ F = tiền công được góp + tài trợ − đã chi = <b id="fF">–</b> đ<br>Giá mỗi giờ khi quy đổi = F × s ÷ D = <b id="fP">–</b> đ</div>
+    <div class="fbar"><i id="fBar" style="width:100%"></i></div><p class="note" style="margin-top:6px">Quỹ gồm tài trợ và tiền công được góp, do đơn vị giữ quỹ độc lập quản lý; EFCARE không giữ tiền. Quy đổi một chiều, không ra tiền mặt. Các con số ở đây là số nhập thử.</p></div>
    <div class="panel"><h4>Sổ minh bạch</h4><div class="ledger" id="ledger"><div>Mọi ca, mọi lần tặng, mọi lần quỹ chi đều được ghi ở đây.</div></div></div>
   </div>
  </div>
@@ -371,7 +371,7 @@ footer{padding:40px 0 60px;color:var(--mut);font-size:13px;text-align:center}
  <h2>Quỹ Care for Care: tiền thật, công thức công khai, không hứa vượt khả năng</h2>
  <div class="g g2">
   <div class="card"><h3>Nguyên tắc của quỹ</h3><ul>
-   <li><b>Nguồn:</b> trích <b>1% doanh thu</b> của EFCARE và tài trợ của doanh nghiệp, tổ chức, cá nhân.</li>
+   <li><b>Nguồn:</b> tài trợ của doanh nghiệp, tổ chức, cá nhân và tiền công người làm tự nguyện góp. EFCARE không giữ tiền của quỹ.</li>
    <li><b>Quy đổi một chiều:</b> giờ sang tín dụng chăm sóc, không bao giờ ra tiền mặt.</li>
    <li><b>Công thức:</b> giá trị mỗi giờ = (số dư quỹ × hệ số an toàn 0,7–0,9) ÷ tổng giờ đang chờ; có trần quy đổi theo ngày, tháng.</li>
    <li><b>Minh bạch:</b> tài khoản riêng; bảng số dư và từng khoản chi công khai; kiểm toán độc lập hằng năm.</li>
@@ -445,10 +445,10 @@ var S,timer=null,clock;
 function init(){persona('hanh');S={a:'form',b:'idle',per:'hanh',g:0,m:150,paid:0,emg:0,cons:false,code:'',otp:'',lan:0,me:0,mai:0,meCfc:0,price:0,spent:0,pend:0,helpers:{},recs:{},cases:0,ok:0,gift:0,used:0,step:-1,auto:false,alert:''};clock=15*60;$('ledger').innerHTML='<div>Mọi ca, mọi lần tặng, mọi lần quỹ chi đều được ghi ở đây.</div>';$('mDot').setAttribute('opacity',0);render();fund();stats();dots(-1)}
 function tm(){clock+=7;var h=Math.floor(clock/60)%24,m=clock%60;return (h<10?'0':'')+h+':'+(m<10?'0':'')+m}
 function log(t){var d=document.createElement('div');d.textContent=tm()+'  '+t;var L=$('ledger');if(L.firstChild&&L.children.length===1&&L.firstChild.textContent.indexOf('Mọi ca')===0)L.innerHTML='';L.insertBefore(d,L.firstChild)}
-function F(){return (Number($('fRev').value)||0)*0.01+(Number($('fSpon').value)||0)-S.spent}
+function F(){return (Number($('fRev').value)||0)+(Number($('fSpon').value)||0)-S.spent}
 function D(){return Math.max(1,(Number($('fD').value)||0)+S.pend)}
 function price(){var s=Number($('fS').value)||0;return F()*s/D()}
-function fund(){var f=F();$('fF').textContent=vnd(f);$('fP').textContent=vnd(price());var tot=(Number($('fRev').value)||0)*0.01+(Number($('fSpon').value)||0);$('fBar').style.width=(tot>0?Math.max(0,Math.min(100,f/tot*100)):0)+'%'}
+function fund(){var f=F();$('fF').textContent=vnd(f);$('fP').textContent=vnd(price());var tot=(Number($('fRev').value)||0)+(Number($('fSpon').value)||0);$('fBar').style.width=(tot>0?Math.max(0,Math.min(100,f/tot*100)):0)+'%'}
 ['fRev','fSpon','fS','fD'].forEach(function(i){$(i).oninput=function(){fund()}});
 function setc(id,v){var e=$(id);if(e.textContent!==String(v)){e.textContent=v;e.classList.add('pulse');setTimeout(function(){e.classList.remove('pulse')},700)}}
 function stats(){var h=S.lan+S.gift+S.mai;var hv=(S.okHours||0);setc('cH',fmt(hv));setc('cG',Object.keys(S.helpers).length);setc('cR',Object.keys(S.recs).length);setc('cC',S.cases?Math.round(S.ok/S.cases*100)+'%':'–');setc('cF',fmt(S.gift));setc('cU',vnd(S.used))}
